@@ -109,7 +109,7 @@
     "undo_failed": "Rückgängig machen hat nicht geklappt. Versuch es noch einmal.",
     "copy_failed": "Kopieren hat nicht geklappt. Versuch es noch einmal.",
     "move_error": "Die E-Mails konnten nicht in diesen Ordner verschoben werden. Versuch es noch einmal.",
-    "tag_failed": "Das Label konnte nicht hinzugefügt werden. Versuch es noch einmal.",
+    "tag_failed": "Das Tag konnte nicht hinzugefügt werden. Versuch es noch einmal.",
     "identity_create_failed": "Die Absenderadresse konnte nicht hinzugefügt werden: {error}",
     "identity_update_failed": "Die Absenderadresse konnte nicht geändert werden: {error}",
     "identity_delete_failed": "Die Absenderadresse konnte nicht gelöscht werden: {error}",
@@ -135,7 +135,7 @@
         "scope": {
           "description": "Ist das aus, gilt die Reihenfolge nur im Posteingang. Andere Ordner zeigen die neuesten E-Mails zuerst."
         },
-        "unsupported_note": "Dein Mailserver kann nicht nach gelesen oder ungelesen, Stern oder Label sortieren. Diese Stufen fallen weg, und die neuesten E-Mails kommen zuerst."
+        "unsupported_note": "Dein Mailserver kann nicht nach gelesen oder ungelesen, Stern oder Tag sortieren. Diese Stufen fallen weg, und die neuesten E-Mails kommen zuerst."
       },
       "description": "Ändere, wie das Webmail aussieht",
       "font_size": {
@@ -177,10 +177,10 @@
         "folders_description": "Wähl, welche Ordner dieses Kontos zu den Listen „Alle Mails“, „Ungelesen“ und „Markiert“ gehören."
       },
       "tint_list_rows": {
-        "description": "Jede E-Mail in der Liste in der Farbe ihres ersten Labels einfärben. Ist das aus, zeigen die kleinen Punkte die Label-Farbe trotzdem."
+        "description": "Jede E-Mail in der Liste in der Farbe ihres ersten Tags einfärben. Ist das aus, zeigen die kleinen Punkte die Tag-Farbe trotzdem."
       },
       "show_folder_total_count": {
-        "description": "Zeigen, wie viele E-Mails ein Ordner oder Label insgesamt hat, neben der Zahl der ungelesenen."
+        "description": "Zeigen, wie viele E-Mails ein Ordner oder Tag insgesamt hat, neben der Zahl der ungelesenen."
       },
       "favicon_unread_badge": {
       },
@@ -195,18 +195,18 @@
       }
     },
     "keywords": {
-      "description": "Erstell Labels, um deine E-Mails zu ordnen. Die Labels werden mit deinen E-Mails auf dem Server gespeichert.",
-      "migration_error": "Das Label konnte bei deinen E-Mails nicht geändert werden. Versuch es noch einmal.",
-      "filters_migration_error": "Manche Filterregeln nutzen noch das alte Label. Ändere sie selbst.",
+      "description": "Erstell Tags, um deine E-Mails zu ordnen. Die Tags werden mit deinen E-Mails auf dem Server gespeichert.",
+      "migration_error": "Das Tag konnte bei deinen E-Mails nicht geändert werden. Versuch es noch einmal.",
+      "filters_migration_error": "Manche Filterregeln nutzen noch das alte Tag. Ändere sie selbst.",
       "nesting": {
-        "description": "Labels in andere Labels legen, wie Ordner. Die Seitenleiste zeigt sie als Baum."
+        "description": "Tags in andere Tags legen, wie Ordner. Die Seitenleiste zeigt sie als Baum."
       },
-      "has_children_locked": "In diesem Label liegen andere Labels. Deshalb kannst du es nicht umbenennen oder verschieben. Verschieb oder lösch zuerst die Labels darin.",
-      "has_children_delete": "Lösch zuerst die Labels in diesem Label",
+      "has_children_locked": "In diesem Tag liegen andere Tags. Deshalb kannst du es nicht umbenennen oder verschieben. Verschieb oder lösch zuerst die Tags darin.",
+      "has_children_delete": "Lösch zuerst die Tags in diesem Tag",
       "unrecognized": {
-        "description": "Dieser Browser speichert die Namen und Farben deiner Labels. Die Labels selbst sind an deinen E-Mails gespeichert. Such in deinen E-Mails nach Labels, die hier fehlen, und füg sie wieder hinzu.",
-        "partial": "Nur deine {scanned} neuesten von {total} E-Mails wurden durchsucht. Labels, die nur an älteren E-Mails hängen, fehlen vielleicht.",
-        "error": "Deine E-Mails konnten nicht nach Labels durchsucht werden. Versuch es noch einmal."
+        "description": "Dieser Browser speichert die Namen und Farben deiner Tags. Die Tags selbst sind an deinen E-Mails gespeichert. Such in deinen E-Mails nach Tags, die hier fehlen, und füg sie wieder hinzu.",
+        "partial": "Nur deine {scanned} neuesten von {total} E-Mails wurden durchsucht. Tags, die nur an älteren E-Mails hängen, fehlen vielleicht.",
+        "error": "Deine E-Mails konnten nicht nach Tags durchsucht werden. Versuch es noch einmal."
       }
     },
     "notifications": {
