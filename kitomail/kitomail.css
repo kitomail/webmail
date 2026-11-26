@@ -607,3 +607,22 @@ html body [data-mv-compose-window]{box-shadow:0 32px 64px -12px rgb(0 0 0 / .28)
 
 /* Kontomenü: 30 px Luft unter der Speicherpille */
 html body [data-mv-account-popover]{padding-bottom:20px!important}
+
+/* Mail: Stift (Verfassen) ausblenden, solange unter einer Mail geantwortet wird; nach Schließen/Senden wieder sichtbar */
+html[data-interface-layout="mountain-view"]:has([data-mv-compose-inline]) [data-mv-compose] {
+  display: none !important;
+}
+
+/* Suchfelder überall (Variante B): ohne Fläche, dünner Rahmen; beim Klicken wie bisher weiß mit Schatten */
+html[data-interface-layout="mountain-view"] [data-mv-card] .group\/search input:not(:focus),
+html[data-interface-layout="mountain-view"] .mv-topbar input[data-search-input]:not(:focus),
+html[data-interface-layout="mountain-view"] [data-mv-side-panel] input[type="search"]:not(:focus){background-color:transparent!important;border:1px solid #E3E2E6!important}
+html.dark[data-interface-layout="mountain-view"] [data-mv-card] .group\/search input:not(:focus),
+html.dark[data-interface-layout="mountain-view"] .mv-topbar input[data-search-input]:not(:focus),
+html.dark[data-interface-layout="mountain-view"] [data-mv-side-panel] input[type="search"]:not(:focus){background-color:transparent!important;border-color:#2E2D32!important}
+
+/* Mail-Suche: innen weiß wie die anderen Suchfelder (liegt als einzige auf der getönten Leiste) */
+html[data-interface-layout="mountain-view"] .mv-topbar input[data-search-input]:not(:focus){background-color:var(--color-background)!important}
+
+/* Suche in Seitenleisten (Einstellungen): innen weiß wie die anderen Suchfelder */
+html[data-interface-layout="mountain-view"] [data-mv-card] [data-pane="sidebar"] .group\/search input:not(:focus){background-color:var(--color-background)!important}
