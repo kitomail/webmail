@@ -17,6 +17,7 @@ type Messages = Record<string, unknown>;
 export const PLAIN_LANGUAGE_LOADERS: Record<string, () => Promise<Messages>> = {
   en: () => import('@/locales/en/plain.json').then((m) => m.default as Messages),
   de: () => import('@/locales/de/plain.json').then((m) => m.default as Messages),
+  'de-formal': () => import('@/locales/de-formal/plain.json').then((m) => m.default as Messages),
   vi: () => import('@/locales/vi/plain.json').then((m) => m.default as Messages),
 };
 
