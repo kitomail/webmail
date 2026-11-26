@@ -102,13 +102,22 @@ export async function requestPrint(target: PrintTarget): Promise<void> {
     return;
   }
   startPrinting(target);
-  await waitForPrintImages();
+  // kitomail: Safari drops a print() that runs after an await (the click no
+  // longer counts), so it prints at once there; other browsers wait for photos.
+  if (!isSafari()) await waitForPrintImages();
   if (!usePrintStore.getState().printing) return;
   window.print();
   // Browsers whose print() returns before the dialog closes reset on afterprint.
 }
 
 let desktopCopying = false;
+
+/** Safari on macOS and iOS (not Chrome, Edge or Firefox on iOS, which also say Safari). */
+function isSafari(): boolean {
+  if (typeof navigator === "undefined") return false;
+  const ua = navigator.userAgent;
+  return /Safari\//.test(ua) && !/Chrome|Chromium|CriOS|FxiOS|EdgiOS|Edg\/|OPR\//.test(ua);
+}
 
 /**
  * The desktop app: the copy of `target` (null: what the page shows, as Ctrl+P prints)

@@ -63,7 +63,7 @@ function CalendarColorPicker({
     return () => input.removeEventListener('change', commit);
   }, [allowCustom]);
   useEffect(() => {
-    if (customRef.current) customRef.current.value = value || "#3b82f6";
+    if (customRef.current) customRef.current.value = value || "#9B59EE";
   }, [value]);
 
   return (
@@ -93,7 +93,7 @@ function CalendarColorPicker({
           <input
             ref={customRef}
             type="color"
-            defaultValue={value || "#3b82f6"}
+            defaultValue={value || "#9B59EE"}
             className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
           />
           {(selectedIsPreset || !value) && (

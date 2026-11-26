@@ -741,7 +741,7 @@ export function CalendarDayView({
                         if (endMin <= hours.startMinutes || startMin >= hours.endMinutes) return null;
                         const clip = clipToDisplayHours(startMin, endMin, hours);
                         const cal = calendars.find(c => c.id === pendingPreview.calendarId);
-                        const color = paint(cal?.color || "#3b82f6");
+                        const color = paint(cal?.color || "#9B59EE");
                         // Drawn like a saved event, in the column it will take, so the new
                         // event shows where it will land while it is being created.
                         return (

@@ -342,7 +342,7 @@ export function CalendarToolbar({
                       <div className="space-y-0.5">
                         {calendars.filter(c => !c.isShared).map((cal) => {
                           const isVisible = selectedCalendarIds.includes(cal.id);
-                          const color = paint(cal.color || "#3b82f6");
+                          const color = paint(cal.color || "#9B59EE");
                           return (
                             <button
                               key={cal.id}
@@ -382,7 +382,7 @@ export function CalendarToolbar({
                             <div className="space-y-0.5">
                               {group.cals.map((cal) => {
                                 const isVisible = selectedCalendarIds.includes(cal.id);
-                                const color = paint(cal.color || "#3b82f6");
+                                const color = paint(cal.color || "#9B59EE");
                                 return (
                                   <button
                                     key={cal.id}

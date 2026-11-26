@@ -59,7 +59,7 @@ interface EventCardProps {
   timedStyle?: MonthTimedEventStyle;
 }
 
-function sanitizeColor(color: string | null | undefined, fallback = "#3b82f6"): string {
+function sanitizeColor(color: string | null | undefined, fallback = "#9B59EE"): string {
   if (!color) return fallback;
   if (/^#[0-9a-fA-F]{3,8}$/.test(color)) return color;
   if (/^(rgb|hsl)a?\([\d\s,.%/]+\)$/.test(color)) return color;
