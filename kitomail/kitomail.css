@@ -626,3 +626,10 @@ html[data-interface-layout="mountain-view"] .mv-topbar input[data-search-input]:
 
 /* Suche in Seitenleisten (Einstellungen): innen weiß wie die anderen Suchfelder */
 html[data-interface-layout="mountain-view"] [data-mv-card] [data-pane="sidebar"] .group\/search input:not(:focus){background-color:var(--color-background)!important}
+
+/* Einstellungen → Sicherheit: Abschnitt „API-Schlüssel“ ausblenden (für Tarife kito/plus/max in Stalwart gesperrt) */
+div.space-y-3:has(> div h4[data-search-label="API-Schlüssel"]){display:none!important}
+div.border-t:has(+ div.space-y-3 > div h4[data-search-label="API-Schlüssel"]){display:none!important}
+
+/* Einstellungen → Datenschutz: Abschnitt „Absenderbilder“ ausblenden (Firmenlogos über DuckDuckGo/USA; Vorgabe bleibt „aus“) */
+[data-settings-section="senders"]{display:none!important}
