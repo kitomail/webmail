@@ -650,3 +650,6 @@ html body header[data-mobile-mail-header].rounded-full{
   margin-left:16px!important;
   margin-right:16px!important;
 }
+
+/* === kitomail: zwei Auswahlfelder nebeneinander (z. B. Kalender → Sichtbare Stunden) teilen sich die Zeile, passen aufs iPhone (Variante A, .bak72) === */
+div.flex.items-center:has(> select + span + select) > select{min-width:0!important;flex:1 1 0!important}
