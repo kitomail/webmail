@@ -206,7 +206,7 @@ export function QuickCreatePopover({
             <div className="flex items-center gap-2.5">
               <span
                 className="w-4 h-4 rounded-sm flex-shrink-0"
-                style={{ backgroundColor: paint(selected?.color || "#3b82f6") }}
+                style={{ backgroundColor: paint(selected?.color || "#9B59EE") }}
                 aria-hidden="true"
               />
               <CalendarSelect

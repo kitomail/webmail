@@ -27,6 +27,6 @@ describe('composer wording', () => {
   });
 
   it('asks in German for a recipient in a sentence', () => {
-    expect((composer('de').validation as Record<string, string>).recipient_required).toBe('Fügen Sie einen Empfänger hinzu, um zu senden');
+    expect((composer('de-formal').validation as Record<string, string>).recipient_required).toBe('Fügen Sie einen Empfänger hinzu, um zu senden');
   });
 });

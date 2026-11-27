@@ -26,7 +26,7 @@ export function CalendarTaskChip({ task, calendar, onToggleComplete, onSelect, t
   const t = useTranslations("calendar");
   const paint = useCvdColor();
   const isCompleted = task.progress === "completed";
-  const color = paint(calendar?.color || "#3b82f6");
+  const color = paint(calendar?.color || "#9B59EE");
   const title = task.title || t("tasks.no_title");
 
   return (

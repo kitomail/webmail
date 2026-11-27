@@ -1,0 +1,652 @@
+/* kitomail – Markenfarben auch vor der Anmeldung (gleiche Werte wie Theme kitomail 1.4.2) */
+:root:not(.dark) {
+  --color-primary: #534474;
+  --color-primary-foreground: #ffffff;
+  --color-ring: #534474;
+  --color-accent: #E3DDF3;
+  --color-accent-foreground: #3B2F57;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+}
+:root.dark {
+  --color-primary: #B3A5DD;
+  --color-primary-foreground: #16111F;
+  --color-ring: #B3A5DD;
+  --color-accent: #2E2545;
+  --color-accent-foreground: #DCD3FB;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+}
+
+/* Seitenleiste (Suchleiste oben): nur der aktive Ordner bekommt die Pille */
+[data-interface-layout="mountain-view"] [data-mv-nav-row]:not([data-selected="true"]):not(:hover) {
+  background-color: transparent !important;
+}
+
+/* Icons oben rechts: grauer Hover wie in der rechten Leiste statt bläulich */
+[data-interface-layout="mountain-view"] .mv-topbar button.rounded-full:hover {
+  background-color: var(--mv-nav-hover) !important;
+}
+
+/* Rechte Leiste (Kalender, Aufgaben, Kontakte): grau wie die Icons oben statt Google-Blau */
+[data-mv-side-rail] button svg {
+  color: var(--color-muted-foreground) !important;
+}
+[data-mv-side-rail] button:hover svg,
+[data-mv-side-rail] button[aria-pressed="true"] svg {
+  color: var(--color-foreground) !important;
+}
+
+/* Suchleiste oben: Verfassen und aktiver Ordner im Marken-Akzent statt gemischtem Lila */
+html[data-interface-layout="mountain-view"]:not(.dark) {
+  --mv-compose-bg: #E3DDF3;
+  --mv-compose-fg: #3B2F57;
+  --mv-nav-selected: #E3DDF3;
+}
+html[data-interface-layout="mountain-view"].dark {
+  --mv-compose-bg: #2E2545;
+  --mv-compose-fg: #DCD3FB;
+  --mv-nav-selected: #2E2545;
+}
+
+/* Icons oben rechts, die Links sind (Einstellungen, Admin): ebenfalls grauer Hover */
+[data-interface-layout="mountain-view"] .mv-topbar a.rounded-full:hover {
+  background-color: var(--mv-nav-hover) !important;
+}
+
+/* Mail-Leiste: Hover grau statt weiß */
+[data-interface-layout="mountain-view"] [data-mv-nav-row]:not([data-selected="true"]):hover {
+  background-color: var(--mv-nav-hover) !important;
+}
+
+/* Einstellungen-Leiste wie die Mail-Leiste */
+html[data-interface-layout="mountain-view"] [data-pane="sidebar"]:has([data-tour="settings-tabs"]) {
+  background-color: var(--mv-canvas) !important;
+}
+html[data-interface-layout="mountain-view"] [data-tour="settings-tabs"] button[data-testid^="settings-tab-"] {
+  margin-inline-start: -0.75rem;
+  width: calc(100% + 0.75rem);
+  padding-inline-start: 1.5rem;
+  border-radius: 0 9999px 9999px 0 !important;
+}
+html[data-interface-layout="mountain-view"] [data-tour="settings-tabs"] button[data-testid^="settings-tab-"].ps-9 {
+  padding-inline-start: 3rem;
+}
+html[data-interface-layout="mountain-view"] [data-tour="settings-tabs"] button[data-testid^="settings-tab-"]:not([aria-current="page"]):hover {
+  background-color: var(--mv-nav-hover) !important;
+}
+
+/* Hover-Grau 2 % heller (Bulwark: 7 %) */
+html[data-interface-layout="mountain-view"] {
+  --mv-nav-hover: color-mix(in oklab, var(--color-foreground) 5%, var(--mv-canvas));
+}
+
+/* Mail-Leiste: Form wie in den Einstellungen (eingerückt, runde Ecken statt Pille) */
+[data-interface-layout="mountain-view"] [data-mv-nav-row] {
+  margin-inline-start: 12px !important;
+  margin-inline-end: 12px !important;
+  width: calc(100% - 24px) !important;
+  border-radius: 0.5rem !important;
+}
+
+/* Apps-Menü oben rechts */
+[data-interface-layout="mountain-view"] .mv-topbar button[aria-haspopup="menu"][aria-expanded="true"],
+[data-interface-layout="mountain-view"] .mv-topbar button[aria-haspopup="menu"]:hover {
+  background-color: var(--mv-nav-hover) !important;
+}
+[data-interface-layout="mountain-view"] .mv-topbar [role="menu"] a[role="menuitem"]:hover {
+  background-color: var(--mv-nav-hover) !important;
+}
+[data-interface-layout="mountain-view"] .mv-topbar [role="menu"] a[role="menuitem"].bg-muted,
+[data-interface-layout="mountain-view"] .mv-topbar [role="menu"] a[role="menuitem"].bg-muted:hover {
+  background-color: var(--color-accent, #E3DDF3) !important;
+  color: var(--color-accent-foreground, #3B2F57) !important;
+}
+[data-interface-layout="mountain-view"] .mv-topbar [role="menu"] a[role="menuitem"].bg-muted svg {
+  color: var(--color-accent-foreground, #3B2F57) !important;
+}
+
+/* Einstellungen: zurück zur Form mit runden Ecken (statt Pille am Rand) */
+html[data-interface-layout="mountain-view"] [data-tour="settings-tabs"] button.w-full[data-testid^="settings-tab-"] {
+  margin-inline-start: 0 !important;
+  width: 100% !important;
+  padding-inline-start: 0.75rem !important;
+  border-radius: 0.5rem !important;
+}
+html[data-interface-layout="mountain-view"] [data-tour="settings-tabs"] button.w-full.ps-9[data-testid^="settings-tab-"] {
+  padding-inline-start: 2.25rem !important;
+}
+
+/* Dateien und Kontakte: Leiste wie in der Mail-Ansicht */
+html[data-interface-layout="mountain-view"] .bg-secondary.h-full:has(.min-h-8.w-full) {
+  background-color: var(--mv-canvas) !important;
+}
+html[data-interface-layout="mountain-view"] .bg-secondary.h-full .min-h-8.w-full {
+  margin-inline: 8px !important;
+  width: calc(100% - 16px) !important;
+  border-radius: 0.5rem !important;
+}
+html[data-interface-layout="mountain-view"] .bg-secondary.h-full .min-h-8.w-full:not(.bg-accent):hover {
+  background-color: var(--mv-nav-hover) !important;
+}
+
+/* Dunkelmodus: Hover-Grau 2 % heller als im hellen Modus */
+html[data-interface-layout="mountain-view"].dark {
+  --mv-nav-hover: color-mix(in oklab, var(--color-foreground) 7%, var(--mv-canvas));
+}
+
+/* Dunkelmodus: Hover nochmal 2 % heller (9 %) */
+html[data-interface-layout="mountain-view"].dark {
+  --mv-nav-hover: color-mix(in oklab, var(--color-foreground) 9%, var(--mv-canvas));
+}
+/* Dunkelmodus, Apps-Menü: Hover auf den helleren Menü-Hintergrund bezogen */
+html[data-interface-layout="mountain-view"].dark .mv-topbar [role="menu"] a[role="menuitem"]:not(.bg-muted):hover {
+  background-color: color-mix(in oklab, var(--color-foreground) 9%, var(--color-popover, #1C1C1E)) !important;
+}
+
+/* Heller Modus: Bulwarks bläuliches "muted" (Menüs, Hover, Schildchen) durch unser neutrales Grau ersetzen */
+:root:not(.dark) {
+  --color-muted: #EAE9EE;
+}
+
+/* Icon-Buttons (Bulwark "ghost"): Hover grau statt Akzent-Lila; Ausgewähltes bleibt lila */
+.hover\:bg-accent:not(.bg-accent):hover {
+  background-color: var(--color-muted) !important;
+}
+.hover\:text-accent-foreground:not(.bg-accent):hover {
+  color: var(--color-foreground) !important;
+}
+
+/* Eingeklappte Mail-Leiste: Icon im Kasten zentrieren (Bulwarks einseitiger Abstand rechts) */
+[data-interface-layout="mountain-view"] [data-mv-nav-row].justify-center {
+  padding-inline: 0 !important;
+  justify-content: center !important;
+}
+[data-interface-layout="mountain-view"] [data-mv-nav-row].justify-center > * {
+  padding-inline-start: 0 !important;
+  margin-inline: 0 !important;
+}
+
+/* Handy: schwebende Plus/Verfassen-Buttons einheitlich als 56-px-Kreis (Mail ohne Text, wie Outlook) */
+@media (max-width: 767px) {
+  button.absolute.bottom-4.end-4.shadow-lg {
+    width: 56px !important;
+    height: 56px !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    border-radius: 9999px !important;
+  }
+  button.absolute.bottom-4.end-4.shadow-lg > span {
+    display: none !important;
+  }
+  button.absolute.bottom-4.end-4.shadow-lg > svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
+
+/* Handy: Standard-Textgroesse 125 % statt 100 % (eigene Wahl ueber 100 % bleibt erhalten) */
+@media (max-width: 767px) {
+  html[style*="--font-size-base: 100%"] {
+    --font-size-base: 125% !important;
+  }
+}
+
+/* Einstellungen: "Mobile App verknuepfen" (Bulwark-Mail-App) ausblenden */
+.space-y-3:has(> div > svg.tabler-icon-qrcode) {
+  display: none !important;
+}
+.space-y-3:has(> div > svg.tabler-icon-qrcode) + .border-t {
+  display: none !important;
+}
+
+/* Webmail oben links: offizielles Logo (K + Schriftzug) wie auf der Login-Seite, ohne zusaetzlichen Text */
+.mv-topbar a[href="/"] > img,
+.mv-topbar a[aria-label] > img {
+  width: auto !important;
+  height: 32px !important;
+}
+.mv-topbar a[aria-label] > img + span {
+  display: none !important;
+}
+
+/* ===== Rundungen: 20 px grosse Flaechen, 12 px Zeilen/Felder/Buttons ===== */
+
+/* 20 px: Suche und Kontomenue-Rahmen (Login-Karte hat bereits 20 px ueber --radius-xl) */
+html[data-interface-layout="mountain-view"] {
+  --mv-search-radius: 20px;
+  --mv-popover-radius: 20px;
+}
+
+/* 12 px: Ordnerzeilen in Mail, Einstellungen, Dateien, Kontakte */
+[data-interface-layout="mountain-view"] [data-mv-nav-row],
+html[data-interface-layout="mountain-view"] [data-tour="settings-tabs"] button.w-full[data-testid^="settings-tab-"],
+[data-tour="settings-tabs"] button[data-testid^="settings-tab-"],
+html[data-interface-layout="mountain-view"] .bg-secondary.h-full .min-h-8.w-full {
+  border-radius: 12px !important;
+}
+
+/* 12 px: Eintraege im Kontomenue */
+[data-mv-account-popover] [data-mv-account-current] {
+  border-radius: 12px 12px 0 0 !important;
+}
+[data-mv-account-popover] [data-mv-account-actions] {
+  border-radius: 0 0 12px 12px !important;
+}
+[data-mv-account-popover] .mt-2.rounded-full,
+[data-mv-account-popover] .mt-2.rounded-3xl {
+  border-radius: 12px !important;
+}
+
+/* 12 px: Eingabefelder und Buttons */
+button.rounded-md,
+input.rounded-md,
+textarea.rounded-md,
+select.rounded-md {
+  border-radius: 12px !important;
+}
+
+/* 12 px: Menuefenster (Rechtsklick, Regeln, Verschieben, Labels, ⋮) mit eingerueckten Zeilen */
+[role="menu"]:not([data-mv-account-popover]),
+[role="listbox"] {
+  border-radius: 12px !important;
+  padding-inline: 6px !important;
+}
+[role="menu"]:not([data-mv-account-popover]) :is([role="menuitem"], [role="menuitemcheckbox"], [role="menuitemradio"]),
+[role="listbox"] [role="option"] {
+  border-radius: 12px !important;
+}
+
+/* 20 px: Neues Nachrichtenfenster */
+[data-mv-compose-window],
+[data-mv-compose-inline] {
+  overflow: hidden !important;
+}
+[data-mv-compose-window].rounded-t-lg {
+  border-radius: 20px 20px 0 0 !important;
+}
+[data-mv-compose-window].rounded-lg,
+[data-mv-compose-inline] {
+  border-radius: 20px !important;
+}
+
+/* Verfassen: Senden + Pfeil (Desktop und Handy) – 8 px Abstand, 12 px Rundung, inaktiv im Akzent */
+div:has(> button[data-testid="composer-send"]) {
+  gap: 8px !important;
+}
+div:has(> button[data-testid="composer-send"]) > button {
+  border-radius: 12px !important;
+  border-inline-end: 0 !important;
+}
+div:has(> button[data-testid="composer-send"]) > button:disabled {
+  opacity: 1 !important;
+  background-color: #E3DDF3 !important;
+  color: #3B2F57 !important;
+}
+div:has(> button[data-testid="composer-send"]) > button:disabled svg {
+  color: #3B2F57 !important;
+}
+
+/* ===== kitomail: Verfassen als schwebender Kreis (Desktop, Variante A) ===== */
+@media (min-width: 768px) {
+  div:has(> [data-mv-compose]) { padding: 0 !important; height: 0 !important; }
+  [data-interface-layout="mountain-view"] [data-mv-compose] {
+    position: fixed !important;
+    right: calc(var(--mv-compose-end, 1rem) + 8px) !important;
+    bottom: 24px !important;
+    z-index: 30 !important;
+    width: 56px !important; height: 56px !important;
+    padding: 0 !important; gap: 0 !important;
+    justify-content: center !important;
+    border-radius: 9999px !important;
+    background: #534474 !important; color: #FFFFFF !important;
+    box-shadow: 0 3px 8px rgb(0 0 0 / 0.20) !important;
+  }
+  [data-interface-layout="mountain-view"] [data-mv-compose]:hover { box-shadow: 0 5px 14px rgb(0 0 0 / 0.28) !important; }
+  [data-interface-layout="mountain-view"] [data-mv-compose] > span { display: none !important; }
+  [data-interface-layout="mountain-view"] [data-mv-compose] svg { width: 24px !important; height: 24px !important; color: #FFFFFF !important; }
+}
+
+/* ===== kitomail: Verfassen als Kreis im Standard-Layout (Desktop) ===== */
+@media (min-width: 768px) {
+  button[data-floating-compose="desktop"] {
+    width: 56px !important; height: 56px !important;
+    padding: 0 !important; gap: 0 !important;
+    justify-content: center !important;
+    border-radius: 9999px !important;
+    bottom: 24px !important;
+    inset-inline-end: 24px !important;
+    background: #534474 !important; color: #FFFFFF !important;
+    box-shadow: 0 3px 8px rgb(0 0 0 / 0.20) !important;
+  }
+  button[data-floating-compose="desktop"]:hover { box-shadow: 0 5px 14px rgb(0 0 0 / 0.28) !important; }
+  button[data-floating-compose="desktop"] > span { display: none !important; }
+  button[data-floating-compose="desktop"] svg { width: 24px !important; height: 24px !important; color: #FFFFFF !important; }
+}
+
+/* ===== kitomail: Verfassen-Kreis mit Kästchen-Stift (wie Standard-Layout) ===== */
+@media (min-width: 768px) {
+  [data-interface-layout="mountain-view"] [data-mv-compose] > svg { display: none !important; }
+  [data-interface-layout="mountain-view"] [data-mv-compose]::before {
+    content: "";
+    width: 24px; height: 24px; flex-shrink: 0;
+    background-color: #FFFFFF;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1'/><path d='M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415'/><path d='M16 5l3 3'/></svg>") center / 24px 24px no-repeat;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1'/><path d='M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415'/><path d='M16 5l3 3'/></svg>") center / 24px 24px no-repeat;
+  }
+}
+
+/* ===== kitomail: Neutraltöne aus dem Markenfarbton (Violett, OKLCH ~297°) ===== */
+/* Hell */
+:root:not(.dark) {
+  --color-foreground: #1A191E;
+  --color-secondary-foreground: #1A191E;
+  --color-popover-foreground: #1A191E;
+  --color-card-foreground: #1A191E;
+  --color-sidebar-foreground: #1A191E;
+  --color-sidebar-accent-foreground: #1A191E;
+  --color-muted-foreground: #5B5A60;
+  --color-border: #E3E2E6;
+  --color-input: #E3E2E6;
+  --color-sidebar-border: #E3E2E6;
+  --color-secondary: #F9F8FC;
+  --color-sidebar: #F9F8FC;
+  --color-sidebar-accent: #EAE9EE;
+}
+/* Dunkel */
+:root.dark {
+  --color-background: #0A0A0C;
+  --color-card: #141317;
+  --color-popover: #1C1B1F;
+  --color-input: #26252A;
+  --color-secondary: #26252A;
+  --color-muted: #26252A;
+  --color-border: #2E2D32;
+  --color-sidebar: #0A0A0C;
+  --color-sidebar-border: #26252A;
+  --color-sidebar-accent: #26252A;
+  --color-foreground: #FAFAFD;
+  --color-secondary-foreground: #FAFAFD;
+  --color-popover-foreground: #FAFAFD;
+  --color-card-foreground: #FAFAFD;
+  --color-sidebar-foreground: #FAFAFD;
+  --color-sidebar-accent-foreground: #FAFAFD;
+  --color-muted-foreground: #AEACB3;
+}
+/* Scrollleiste */
+:root:not(.dark):not([data-native-scrollbars="on"]) ::-webkit-scrollbar-thumb { background-color: #EAE9EE; }
+:root:not(.dark):not([data-native-scrollbars="on"]) ::-webkit-scrollbar-thumb:hover { background-color: #CECDD1; }
+:root.dark:not([data-native-scrollbars="on"]) ::-webkit-scrollbar-thumb { background-color: #26252A; }
+:root.dark:not([data-native-scrollbars="on"]) ::-webkit-scrollbar-thumb:hover { background-color: #5B595F; }
+
+/* ===== kitomail: Standard-Layout – in der lila Leiste nur das weiße K ===== */
+[data-window-rail] > div:first-child > img {
+  content: url("/kitomail-assets/app-logo-k-weiss.svg");
+  width: 28px !important;
+  height: 28px !important;
+  object-fit: contain;
+}
+
+/* ===== kitomail: Dunkel – Leisten dunkler, damit Hover sichtbar bleibt ===== */
+:root.dark {
+  --color-secondary: #141317;
+}
+
+/* ===== kitomail: Suche als Pille, bündig mit der Mail-Liste (Variante A) ===== */
+@media (min-width: 768px) {
+  /* Logo-Bereich so breit wie die Ordnerleiste (256px minus 4px Rand minus 8px Abstand) */
+  [data-interface-layout="mountain-view"] .mv-topbar > div:first-child {
+    flex: 0 0 auto !important;
+    width: 244px !important;
+  }
+  /* rechtes Ende wie bisher */
+  [data-interface-layout="mountain-view"] .mv-topbar-search {
+    max-width: 664px !important;
+  }
+  /* Ordnerleiste eingeklappt: wie bisher */
+  [data-interface-layout="mountain-view"]:has([style*="width: 72px"]) .mv-topbar > div:first-child {
+    width: auto !important;
+  }
+  [data-interface-layout="mountain-view"]:has([style*="width: 72px"]) .mv-topbar-search {
+    max-width: 720px !important;
+  }
+}
+/* Pillenform */
+[data-interface-layout="mountain-view"] .mv-topbar input[data-search-input] {
+  border-radius: 9999px !important;
+}
+
+/* Kontomenü: Hover als Pille */
+[data-mv-account-actions]{padding:6px 8px!important}
+[data-mv-account-actions] > button{border-radius:9999px!important}
+
+/* Konto verwalten: Hover als eingerückte Pille wie bei Abmelden */
+html body [data-mv-manage-account]{position:relative!important;isolation:isolate}
+html body [data-mv-manage-account]:hover{background:var(--color-background)!important}
+html body [data-mv-manage-account]::before{content:"";position:absolute;inset:0 8px;border-radius:9999px;background:var(--color-muted);opacity:0;transition:opacity .15s;z-index:-1}
+html body [data-mv-manage-account]:hover::before{opacity:1}
+
+/* Kontomenü: Hinzufügen, Verwalten, Abmelden in einer weißen Karte, Hover als eingerückte Pille; Speicher separat */
+html body [data-mv-account-popover]{display:flex!important;flex-direction:column!important;gap:0!important}
+html body [data-mv-account-popover] > *{flex-shrink:0!important}
+html body [data-mv-account-popover] [data-mv-account-actions]{display:contents!important}
+html body [data-mv-account-popover] [data-mv-account-actions] > button,
+html body [data-mv-account-popover] > button[data-mv-manage-account]{order:3!important;position:relative!important;isolation:isolate;background:var(--color-background)!important;border-radius:0!important;margin:0!important}
+html body [data-mv-account-popover] [data-mv-account-actions] > button::before,
+html body [data-mv-account-popover] > button[data-mv-manage-account]::before{content:"";position:absolute;inset:0 8px;border-radius:9999px;background:var(--color-muted);opacity:0;transition:opacity .15s;z-index:-1}
+html body [data-mv-account-popover] [data-mv-account-actions] > button:hover::before,
+html body [data-mv-account-popover] > button[data-mv-manage-account]:hover::before{opacity:1}
+html body [data-mv-account-popover] [data-mv-account-actions] > button[data-testid="add-account"]{order:1!important;border-top:1px solid color-mix(in srgb,var(--color-border) 60%,transparent)!important;padding-top:calc(.75rem + 6px)!important}
+html body [data-mv-account-popover] [data-mv-account-actions] > button[data-testid="add-account"]::before{inset:6px 8px 0}
+html body [data-mv-account-popover] > button[data-mv-manage-account]{order:2!important}
+html body [data-mv-account-popover] [data-mv-account-actions] > button:last-child{order:4!important;padding-bottom:calc(.75rem + 6px)!important;border-radius:0 0 1.5rem 1.5rem!important}
+html body [data-mv-account-popover] [data-mv-account-actions] > button:last-child::before{inset:0 8px 6px}
+html body [data-mv-account-popover] > [data-mv-storage]{order:5!important;margin-top:.5rem!important}
+html body [data-mv-account-popover] > div.rounded-3xl{order:6!important}
+html body [data-mv-account-popover] > button[data-mv-manage-account].rounded-full{border-radius:0!important;margin:0!important}
+
+/* Kontomenü: 24 px Rundung für Karte und Pillen */
+html body [data-mv-account-popover] [data-mv-account-current][data-mv-account-current]{border-radius:24px 24px 0 0!important}
+html body [data-mv-account-popover] [data-mv-account-actions] > button:last-child{border-radius:0 0 24px 24px!important}
+html body [data-mv-account-popover] > [data-mv-storage].rounded-full{border-radius:24px!important}
+html body [data-mv-account-popover] > div.mt-2.rounded-3xl{border-radius:24px!important}
+
+/* Kontomenü: kräftigerer, plastischer Schatten */
+html body [data-mv-account-popover]{box-shadow:0 24px 48px -12px rgb(0 0 0 / .18), 0 8px 16px -8px rgb(0 0 0 / .12), 0 0 0 1px rgb(0 0 0 / .04)!important}
+html body [data-mv-account-popover]{box-shadow:0 32px 64px -12px rgb(0 0 0 / .28), 0 12px 24px -8px rgb(0 0 0 / .18), 0 0 0 1px rgb(0 0 0 / .06)!important}
+
+/* Kontomenü: 8 px Abstand zur Kopfzeile */
+html body [data-mv-account-popover]{margin-top:8px!important;max-height:calc(100dvh - 5rem - 8px)!important}
+
+/* Mailliste: gelesene Mails mit gleichem Hintergrund wie ungelesene (Hover, Auswahl, Haken bleiben) */
+[data-mv-row][data-unread="false"]:not([data-checked]):not(:hover).bg-muted\/60{background-color:var(--color-background)!important}
+
+/* Unterhaltung (Mountain View): Hover auf eingeklappter Nachricht mit seitlichen Linien und Schatten von oben */
+button[data-mv-conversation-card]:hover{box-shadow:inset 1px 0 0 #E3E2E6, inset -1px 0 0 #E3E2E6, inset 0 6px 6px -6px rgb(0 0 0 / .18)!important}
+:root.dark button[data-mv-conversation-card]:hover{box-shadow:inset 1px 0 0 #2E2D32, inset -1px 0 0 #2E2D32, inset 0 6px 6px -6px rgb(0 0 0 / .5)!important}
+button[data-mv-conversation-card]:hover{box-shadow:inset .5px 0 0 #EAE9EE, inset -.5px 0 0 #EAE9EE, inset 0 4px 4px -4px rgb(0 0 0 / .08)!important}
+:root.dark button[data-mv-conversation-card]:hover{box-shadow:inset .5px 0 0 #26252A, inset -.5px 0 0 #26252A, inset 0 4px 4px -4px rgb(0 0 0 / .3)!important}
+
+/* Kontomenü (Bulwark-Ansicht): breiter und mit Innenabstand für die Hover-Flächen */
+[role="menu"].w-72.rounded-lg.border{width:20rem!important;padding:6px!important}
+[role="menu"].w-72.rounded-lg.border{width:21rem!important;padding:10px!important;border-radius:22px!important}
+[role="menu"].w-72.rounded-lg.border button[role="menuitem"]{padding-top:10px!important;padding-bottom:10px!important}
+
+/* Kontomenü (Bulwark-Ansicht): 6 px Luft über und unter den Trennlinien */
+[role="menu"].w-72.rounded-lg.border > div.border-t{margin-top:6px!important;padding-top:6px!important}
+
+/* Ordnerleiste (Bulwark-Ansicht): Hover und Auswahl links und rechts 8 px eingerückt */
+html:not([data-interface-layout="mountain-view"]) [data-folder-nav] [data-testid="folder-row"]{margin-inline:8px!important;width:calc(100% - 16px)!important;border-radius:12px!important}
+html:not([data-interface-layout="mountain-view"]) [data-folder-nav] [data-testid="folder-row"]{border-inline-start-color:transparent!important}
+
+/* Auswahlknöpfe (select) einheitlich: 36 px, 14 px Schrift, 12 px rund, eigener Pfeil */
+html body select{appearance:none!important;-webkit-appearance:none!important;height:36px!important;min-width:11rem;font-size:.875rem!important;line-height:36px!important;padding:0 2.25rem 0 .875rem!important;border:0!important;border-radius:12px!important;background-color:#EAE9EE!important;color:var(--color-foreground)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235B5A60' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 9l4-4 4 4M16 15l-4 4-4-4'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right .75rem center!important;background-size:16px!important;cursor:pointer}
+:root.dark body select{background-color:#26252A!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23AEACB3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 9l4-4 4 4M16 15l-4 4-4-4'/%3E%3C/svg%3E")!important}
+html body select:hover{background-color:#E3E2E6!important}
+:root.dark body select:hover{background-color:#2E2D32!important}
+
+/* Einstellungen: Abschnitt „Experimentell“ (Pro-Oberfläche) ausblenden */
+[data-settings-section="experimental"]{display:none!important}
+
+/* Kontakte (Mountain View): Leiste auf grauem Grund, Liste und Details als runde weiße Karte, Zeilen eingerückt */
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-tour="contacts-list"]){background-color:var(--mv-canvas)!important}
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-tour="contacts-list"]) [data-pane="sidebar"]{background:transparent!important;border-inline-end-color:transparent!important}
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-tour="contacts-list"]) main[data-pane="main"]{background-color:var(--color-background);border-radius:16px;overflow:hidden}
+[data-interface-layout="mountain-view"] [data-contact-id]{border-bottom-color:transparent!important;border-radius:12px!important;margin:2px 8px!important;width:calc(100% - 16px)!important}
+
+/* Kontakte: alle Zeilen der Adressbuch-Leiste 40 px hoch */
+[data-mv-card]:has([data-tour="contacts-list"]) [data-pane="sidebar"] .min-h-8{min-height:40px!important}
+
+/* Ziehgriffe: statt voller Kante nur ein kurzer Griff in der Mitte */
+[role="separator"][aria-orientation="vertical"]{background:transparent!important}
+[role="separator"][aria-orientation="vertical"]::after{content:"";position:absolute;left:50%;top:50%;width:4px;height:48px;transform:translate(-50%,-50%);border-radius:2px;background:#534474;opacity:0;transition:opacity .15s;pointer-events:none}
+:root.dark [role="separator"][aria-orientation="vertical"]::after{background:#8467D6}
+[role="separator"][aria-orientation="vertical"]:hover::after{opacity:.45}
+[role="separator"][aria-orientation="vertical"]:active::after,[role="separator"][aria-orientation="vertical"]:focus-visible::after{opacity:.8}
+
+/* Kontakt-Details: mehr Luft im Kopfbereich */
+main:has([data-tour="contacts-list"]) [data-window-top-row].border-b{padding-top:2rem!important;padding-bottom:1.5rem!important}
+
+/* Scrollbalken: Laufbahn oben und unten 16 px kürzer, damit sie nicht in die runden Ecken läuft */
+::-webkit-scrollbar-track{margin-block:16px}
+
+/* Kontakte: beide Kopfzeilen 72 px (Linien bleiben bündig), Suchfeld als graue Pille */
+[data-mv-card]:has([data-tour="contacts-list"]) .h-14{height:72px!important}
+[data-tour="contacts-list"] .px-3.h-14{padding-inline:16px!important;gap:12px!important}
+[data-tour="contacts-list"] .group\/search input{height:40px!important;border-radius:9999px!important;border-color:transparent!important;background-color:#EAE9EE!important;padding-inline-start:2.5rem!important}
+[data-tour="contacts-list"] .group\/search > svg{inset-inline-start:14px!important}
+[data-tour="contacts-list"] .group\/search input:focus,[data-tour="contacts-list"] .group\/search input:focus-visible{background-color:var(--color-background)!important;box-shadow:0 1px 3px 0 rgb(0 0 0 / .16),0 4px 8px 3px rgb(0 0 0 / .08)!important}
+[data-tour="contacts-list"] .group\/search kbd{background:#FFFFFF;border-color:transparent!important;border-radius:6px!important}
+:root.dark [data-tour="contacts-list"] .group\/search input{background-color:#26252A!important}
+:root.dark [data-tour="contacts-list"] .group\/search input:focus,:root.dark [data-tour="contacts-list"] .group\/search input:focus-visible{background-color:#141317!important}
+:root.dark [data-tour="contacts-list"] .group\/search kbd{background:#141317}
+
+/* Kontakte: linke Liste beginnt auf gleicher Höhe wie die Kontaktliste rechts */
+[data-mv-card]:has([data-tour="contacts-list"]) [data-pane="sidebar"] .overflow-y-auto.py-1{padding-top:22px!important}
+
+/* Kontakte: Filterbereich weiß wie die Karte */
+[data-tour="contacts-list"] .border-b.bg-muted\/30{background-color:var(--color-background)!important}
+
+/* Kalender (Mountain View): Leiste auf grauem Grund, Ansicht als runde weiße Karte, Monatsübersicht als weiße Karte, Kopfzeilen 72 px, Suche als Pille */
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-tour="calendar-view"]){background-color:var(--mv-canvas)!important}
+[data-mv-card]:has([data-tour="calendar-view"]) [data-pane="sidebar"]{background:transparent!important;border-inline-end-color:transparent!important}
+[data-mv-card]:has([data-tour="calendar-view"]) main[data-pane="main"]{background-color:var(--color-background);border-radius:16px;overflow:hidden}
+[data-mv-card]:has([data-tour="calendar-view"]) .h-14{height:72px!important}
+[data-mv-card]:has([data-tour="calendar-view"]) [data-pane="sidebar"] div.select-none:has(table){background-color:var(--color-background);border-radius:16px;padding:12px 10px}
+[data-mv-card]:has([data-tour="calendar-view"]) .group\/search input{height:40px!important;border-radius:9999px!important;border-color:transparent!important;background-color:#EAE9EE!important;padding-inline-start:2.5rem!important}
+[data-mv-card]:has([data-tour="calendar-view"]) .group\/search > svg{inset-inline-start:14px!important}
+[data-mv-card]:has([data-tour="calendar-view"]) .group\/search input:focus,[data-mv-card]:has([data-tour="calendar-view"]) .group\/search input:focus-visible{background-color:var(--color-background)!important;box-shadow:0 1px 3px 0 rgb(0 0 0 / .16),0 4px 8px 3px rgb(0 0 0 / .08)!important}
+[data-mv-card]:has([data-tour="calendar-view"]) .group\/search kbd{background:#FFFFFF;border-color:transparent!important;border-radius:6px!important}
+:root.dark [data-mv-card]:has([data-tour="calendar-view"]) .group\/search input{background-color:#26252A!important}
+:root.dark [data-mv-card]:has([data-tour="calendar-view"]) .group\/search input:focus,:root.dark [data-mv-card]:has([data-tour="calendar-view"]) .group\/search input:focus-visible{background-color:#141317!important}
+:root.dark [data-mv-card]:has([data-tour="calendar-view"]) .group\/search kbd{background:#141317}
+
+/* Suche (Kontakte, Kalender): Kürzel-Hinweis „/“ ohne Hintergrund */
+[data-tour="contacts-list"] .group\/search kbd,[data-mv-card]:has([data-tour="calendar-view"]) .group\/search kbd{background:transparent!important}
+
+/* Dateien und Einstellungen: wie Kontakte und Kalender (Ecken per clip-path, damit das Scrollen bleibt) */
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-pane="sidebar"]):not(:has([data-tour="contacts-list"])):not(:has([data-tour="calendar-view"])){background-color:var(--mv-canvas)!important}
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-pane="sidebar"]):not(:has([data-tour="contacts-list"])):not(:has([data-tour="calendar-view"])) [data-pane="sidebar"],
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-pane="sidebar"]):not(:has([data-tour="contacts-list"])):not(:has([data-tour="calendar-view"])) [data-pane="sidebar"] > .bg-secondary{background:transparent!important;border-inline-end-color:transparent!important}
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-pane="sidebar"]):not(:has([data-tour="contacts-list"])):not(:has([data-tour="calendar-view"])) main[data-pane="main"]{background-color:var(--color-background);clip-path:inset(0 round 16px)}
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-pane="sidebar"]):not(:has([data-tour="contacts-list"])):not(:has([data-tour="calendar-view"])) .h-14.box-content{height:72px!important}
+
+/* Suche als Pille in allen Bereichen mit Leiste: in der Karte grau, in der Leiste weiß */
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-pane="sidebar"]) .group\/search input{height:40px!important;border-radius:9999px!important;border-color:transparent!important;background-color:#EAE9EE!important;padding-inline-start:2.5rem!important}
+[data-interface-layout="mountain-view"] [data-mv-card] [data-pane="sidebar"] .group\/search input{background-color:#FFFFFF!important}
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-pane="sidebar"]) .group\/search > svg{inset-inline-start:14px!important}
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-pane="sidebar"]) .group\/search input:focus,[data-interface-layout="mountain-view"] [data-mv-card]:has([data-pane="sidebar"]) .group\/search input:focus-visible{background-color:var(--color-background)!important;box-shadow:0 1px 3px 0 rgb(0 0 0 / .16),0 4px 8px 3px rgb(0 0 0 / .08)!important}
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-pane="sidebar"]) .group\/search kbd{background:transparent!important;border-color:transparent!important}
+:root.dark [data-mv-card]:has([data-pane="sidebar"]) .group\/search input{background-color:#26252A!important}
+:root.dark [data-mv-card] [data-pane="sidebar"] .group\/search input{background-color:#141317!important}
+:root.dark [data-mv-card]:has([data-pane="sidebar"]) .group\/search input:focus,:root.dark [data-mv-card]:has([data-pane="sidebar"]) .group\/search input:focus-visible{background-color:#141317!important}
+
+/* Leisten in Kontakte, Kalender, Dateien, Einstellungen fest 256 px wie Mail, ohne Ziehgriff; Karte beginnt überall bei 256 px */
+div:has(+ [role="separator"][aria-valuemin="180"][aria-valuemax="400"]){width:256px!important;max-width:256px!important}
+[role="separator"][aria-valuemin="180"][aria-valuemax="400"]{display:none!important}
+[data-interface-layout="mountain-view"] [data-mv-card]:has([data-pane="sidebar"]){margin-inline-start:0!important}
+
+/* Leisten: erster Eintrag überall 22 px unter der Linie (wie Adressbuch) */
+[data-mv-card] [data-pane="sidebar"] nav.flex-1.overflow-y-auto,
+[data-mv-card]:has([data-tour="calendar-view"]) [data-pane="sidebar"] .flex-1.overflow-y-auto.overflow-x-hidden{padding-top:22px!important}
+
+/* Mail-Leiste: Posteingang mittig zur ersten Zeile der Mailliste */
+[data-interface-layout="mountain-view"] nav[data-folder-nav]{margin-top:56px!important}
+
+/* Mail-Leiste: Posteingang mittig zur zweiten Zeile der Mailliste */
+[data-interface-layout="mountain-view"] nav[data-folder-nav]{margin-top:56px!important}
+
+/* Mail-Suche beginnt rechts neben der Werkzeugleiste (112 px weiter), rechtes Ende unverändert; „/“ ohne Rahmen */
+@media (min-width:768px){
+  .mv-topbar:not(:has([style*="width: 72px"])) > div:first-child{width:356px!important}
+  .mv-topbar:not(:has([style*="width: 72px"])) .mv-topbar-search{max-width:552px!important}
+}
+.mv-topbar kbd{border-color:transparent!important;background:transparent!important}
+
+/* Termin: Link „Zeitzone“ in Markenfarbe */
+button.text-blue-600.underline-offset-2{color:#534474!important}
+:root.dark button.text-blue-600.underline-offset-2{color:#8467D6!important}
+
+/* Knöpfe mit lila Fläche: Schrift und Symbole immer weiß (z. B. „Bearbeiten“ bei Entwürfen) */
+html body button.bg-primary,html body button.bg-primary *,html body a.bg-primary,html body a.bg-primary *{color:#FFFFFF!important}
+
+/* Leiste „Entwurf fortsetzen“: kein Flächen-Hover, Text unterstrichen; mehr Abstand zur Werkzeugleiste */
+[data-testid="continue-draft-bar"]{margin-bottom:8px}
+[data-testid="continue-draft-bar"] > button:first-child:hover{background:transparent!important}
+[data-testid="continue-draft-bar"] > button:first-child:hover span.text-primary{text-decoration:underline;text-underline-offset:3px}
+
+/* Leseansicht: Werkzeugleiste 64 px hoch (mehr Luft oben und unten); Entwurfsleiste ohne Extra-Abstand */
+div:has(> [data-mv-viewer-toolbar]){height:64px!important}
+[data-testid="continue-draft-bar"]{margin-bottom:0!important}
+
+/* „Entwurf fortsetzen“ nur zeigen, wenn das Verfassen-Fenster nicht schon offen ist */
+body:has([data-mv-compose-window]) [data-testid="continue-draft-bar"]{display:none!important}
+
+/* Verfassen-Fenster: gleicher Schatten wie das Kontomenü */
+html body [data-mv-compose-window]{box-shadow:0 32px 64px -12px rgb(0 0 0 / .28), 0 12px 24px -8px rgb(0 0 0 / .18), 0 0 0 1px rgb(0 0 0 / .06)!important}
+
+/* Kontomenü: 30 px Luft unter der Speicherpille */
+html body [data-mv-account-popover]{padding-bottom:20px!important}
+
+/* Mail: Stift (Verfassen) ausblenden, solange unter einer Mail geantwortet wird; nach Schließen/Senden wieder sichtbar */
+html[data-interface-layout="mountain-view"]:has([data-mv-compose-inline]) [data-mv-compose] {
+  display: none !important;
+}
+
+/* Suchfelder überall (Variante B): ohne Fläche, dünner Rahmen; beim Klicken wie bisher weiß mit Schatten */
+html[data-interface-layout="mountain-view"] [data-mv-card] .group\/search input:not(:focus),
+html[data-interface-layout="mountain-view"] .mv-topbar input[data-search-input]:not(:focus),
+html[data-interface-layout="mountain-view"] [data-mv-side-panel] input[type="search"]:not(:focus){background-color:transparent!important;border:1px solid #E3E2E6!important}
+html.dark[data-interface-layout="mountain-view"] [data-mv-card] .group\/search input:not(:focus),
+html.dark[data-interface-layout="mountain-view"] .mv-topbar input[data-search-input]:not(:focus),
+html.dark[data-interface-layout="mountain-view"] [data-mv-side-panel] input[type="search"]:not(:focus){background-color:transparent!important;border-color:#2E2D32!important}
+
+/* Mail-Suche: innen weiß wie die anderen Suchfelder (liegt als einzige auf der getönten Leiste) */
+html[data-interface-layout="mountain-view"] .mv-topbar input[data-search-input]:not(:focus){background-color:var(--color-background)!important}
+
+/* Suche in Seitenleisten (Einstellungen): innen weiß wie die anderen Suchfelder */
+html[data-interface-layout="mountain-view"] [data-mv-card] [data-pane="sidebar"] .group\/search input:not(:focus){background-color:var(--color-background)!important}
+
+/* Einstellungen → Sicherheit: Abschnitt „API-Schlüssel“ ausblenden (für Tarife kito/plus/max in Stalwart gesperrt) */
+div.space-y-3:has(> div h4[data-search-label="API-Schlüssel"]){display:none!important}
+div.border-t:has(+ div.space-y-3 > div h4[data-search-label="API-Schlüssel"]){display:none!important}
+
+/* Einstellungen → Datenschutz: Abschnitt „Absenderbilder“ ausblenden (Firmenlogos über DuckDuckGo/USA; Vorgabe bleibt „aus“) */
+[data-settings-section="senders"]{display:none!important}
+
+/* === kitomail: mobile Kopfzeile weiß mit weichem Schatten (Variante A, .bak64) === */
+html body header[data-mobile-mail-header].rounded-full{
+  background-color:#FFFFFF!important;
+  box-shadow:0 8px 20px -6px rgb(0 0 0/.18),0 2px 6px -2px rgb(0 0 0/.10),0 0 0 1px rgb(0 0 0/.05)!important;
+}
+html.dark body header[data-mobile-mail-header].rounded-full{
+  background-color:#26252A!important;
+  box-shadow:0 8px 20px -6px rgb(0 0 0/.5),0 2px 6px -2px rgb(0 0 0/.35),0 0 0 1px rgb(255 255 255/.06)!important;
+}
+
+/* === kitomail: mobile Kopfzeile schmaler – 52 px hoch, 16 px Rand (Variante B, .bak66) === */
+html body header[data-mobile-mail-header].rounded-full{
+  height:52px!important;
+  margin-left:16px!important;
+  margin-right:16px!important;
+}

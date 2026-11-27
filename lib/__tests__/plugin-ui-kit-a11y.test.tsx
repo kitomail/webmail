@@ -51,7 +51,7 @@ describe('plugin UI kit accessibility', () => {
     const locales = readdirSync(dir).filter((d) => statSync(path.join(dir, d)).isDirectory() && !d.startsWith('_'));
     const keys = Object.keys(KIT_STRINGS.en).sort();
     for (const locale of locales) {
-      expect(Object.keys(KIT_STRINGS[locale] ?? {}).sort(), locale).toEqual(keys);
+      expect(Object.keys(KIT_STRINGS[locale] ?? KIT_STRINGS[locale.split('-')[0]] ?? {}).sort(), locale).toEqual(keys);
     }
   });
 });

@@ -53,6 +53,9 @@ import { isSingleKeyShortcutOff } from "@/lib/single-key-shortcuts";
 import { useDesktopCommands } from "@/lib/desktop/commands";
 import { FilesListingSkeleton } from "@/components/boot-skeleton/files-skeleton";
 
+/** kitomail: the "new text file" entries are hidden. */
+const KITOMAIL_TEXT_FILES: boolean = false;
+
 const NO_FORMATS: string[] = [];
 
 interface ClipboardState {
@@ -1121,7 +1124,8 @@ export function FileBrowser({
       <ContextMenuItem icon={FolderUp} label={tMenu("files_upload_folder")} onClick={() => { closeMenu(); folderInputRef.current?.click(); }} />
       <ContextMenuSeparator />
       <ContextMenuItem icon={FolderPlus} label={tMenu("files_new_folder")} onClick={() => { closeMenu(); setShowNewFolder(true); }} />
-      <ContextMenuItem icon={FilePlus} label={newFileLabel} onClick={() => { closeMenu(); setShowNewTextFile(true); }} />
+      {/* kitomail: no "new text file" */}
+      {KITOMAIL_TEXT_FILES && <ContextMenuItem icon={FilePlus} label={newFileLabel} onClick={() => { closeMenu(); setShowNewTextFile(true); }} />}
     </>
   );
 
@@ -1170,7 +1174,7 @@ export function FileBrowser({
     { id: "upload-files", label: tMenu("files_upload_files"), icon: Upload, run: () => fileInputRef.current?.click(), when: () => canCreate },
     { id: "upload-folder", label: tMenu("files_upload_folder"), icon: FolderUp, run: () => folderInputRef.current?.click(), when: () => canCreate },
     { id: "new-folder", label: tMenu("files_new_folder"), icon: FolderPlus, run: () => setShowNewFolder(true), when: () => canCreate },
-    { id: "new-text-file", label: newFileLabel, icon: FilePlus, run: () => setShowNewTextFile(true), when: () => canCreate },
+    { id: "new-text-file", label: newFileLabel, icon: FilePlus, run: () => setShowNewTextFile(true), when: () => KITOMAIL_TEXT_FILES && canCreate }, // kitomail: no "new text file"
     { id: "trash", label: t("trash"), icon: Trash2, run: () => onNavigate(TRASH_PATH, TRASH_LOCATION), when: () => !inTrash && !accountPickerMode },
     { id: "empty-trash", label: t("empty_trash"), icon: Trash2, run: () => onEmptyTrash?.(), when: () => inTrash && trashCount > 0 && !!onEmptyTrash },
     { id: "refresh", label: t("refresh"), icon: RefreshCw, run: () => void onRefresh() },

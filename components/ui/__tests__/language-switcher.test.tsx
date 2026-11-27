@@ -46,6 +46,13 @@ describe('LanguageSwitcher', () => {
     expect(optionNames()).toEqual([expect.stringContaining('Magyar')]);
   });
 
+  // kitomail: both German entries carry no grey hint and are found as "German".
+  it('shows both German variants without a hint and finds them as German', () => {
+    const input = openMenu();
+    fireEvent.change(input, { target: { value: 'german' } });
+    expect(optionNames()).toEqual(['Deutsch (Du)', 'Deutsch (Sie)']);
+  });
+
   it('picks the highlighted result with the keyboard', () => {
     const input = openMenu();
     fireEvent.change(input, { target: { value: 'pol' } });
@@ -66,14 +73,14 @@ describe('LanguageSwitcher', () => {
   it('lists languages by their own names, Auto first and Latin scripts before others', () => {
     openMenu();
     const names = screen.getAllByRole('option').map((o) => o.querySelector('[dir="auto"]')?.textContent);
-    expect(names.slice(0, 6)).toEqual(['Auto', 'Català', 'Česky', 'Dansk', 'Deutsch', 'Eesti']);
+    expect(names.slice(0, 6)).toEqual(['Auto', 'Català', 'Česky', 'Dansk', 'Deutsch (Du)', 'Deutsch (Sie)']);
     // Slovenčina sorts with S, between Română and Svenska; Tiếng Việt follows.
     const sk = names.indexOf('Slovenčina');
     expect(names[sk - 1]).toBe('Română');
     expect(names[sk + 1]).toBe('Svenska');
     expect(names[sk + 2]).toBe('Tiếng Việt');
     // Every Latin-script name comes before the first non-Latin one.
-    const firstOther = names.findIndex((n) => !/^[\p{Script=Latin}\s]+$/u.test(n ?? ''));
+    const firstOther = names.findIndex((n) => !/^[\p{Script=Latin}\s()]+$/u.test(n ?? ''));
     expect(names.slice(firstOther).every((n) => !/^\p{Script=Latin}/u.test(n ?? ''))).toBe(true);
   });
 

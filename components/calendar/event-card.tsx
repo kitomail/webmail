@@ -62,7 +62,7 @@ interface EventCardProps {
 
 // A colour name ("red", as other calendar apps write it) as its hex value, so
 // it draws, tints and maps to the colour-blind palette like a hex colour.
-function sanitizeColor(color: string | null | undefined, fallback = "#3b82f6"): string {
+function sanitizeColor(color: string | null | undefined, fallback = "#9B59EE"): string {
   if (!color) return fallback;
   if (/^#[0-9a-fA-F]{3,8}$/.test(color)) return color;
   if (/^(rgb|hsl)a?\([\d\s,.%/]+\)$/.test(color)) return color;

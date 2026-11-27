@@ -358,7 +358,7 @@ export function CalendarSidebarPanel({
   const renderCalendarItem = (cal: Calendar, asTaskList = false) => {
     const isVisible = asTaskList ? !hiddenTaskListIds.includes(cal.id) : selectedCalendarIds.includes(cal.id);
     const onToggle = asTaskList ? () => toggleTaskListVisibility(cal.id) : () => onToggleVisibility(cal.id);
-    const color = paint(cal.color || "#3b82f6");
+    const color = paint(cal.color || "#9B59EE");
     // A company calendar can only be shown or hidden: no menu.
     const hasMenu = cal.isCompany ? false : isSubscriptionCalendar(cal.id) ? !!client : true;
 
@@ -487,7 +487,7 @@ export function CalendarSidebarPanel({
     const canClear = onClearCalendar && !isBirthday && cal.myRights?.mayDelete !== false;
     const canDelete = onDeleteCalendar && !isBirthday && !cal.isDefault && !cal.isShared;
     const showSeparator = (canCreate || canRename || canShare || canSetDefault || canChangeColor || canResetColor) && (canClear || canDelete);
-    const color = cal.color || "#3b82f6";
+    const color = cal.color || "#9B59EE";
 
     return (
       <ContextMenu ref={menuRef} isOpen={contextMenu.isOpen} position={contextMenu.position} onClose={closeContextMenu}>

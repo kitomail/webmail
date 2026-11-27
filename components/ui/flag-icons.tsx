@@ -168,6 +168,7 @@ export const flagComponents: Record<string, (props: FlagProps) => ReactElement> 
   sv: FlagSE,
   da: FlagDK,
   de: FlagDE,
+  'de-formal': FlagDE,
   el: FlagGR,
   en: FlagGB,
   fa: FlagIR,

@@ -22,7 +22,7 @@ export function CreateCalendarModal({ client, onClose }: CreateCalendarModalProp
   const createCalendar = useCalendarStore((s) => s.createCalendar);
 
   const [name, setName] = useState("");
-  const [color, setColor] = useState("#3b82f6");
+  const [color, setColor] = useState("#9B59EE");
   const [kind, setKind] = useState<CalendarKind>("events");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const nameRef = useRef<HTMLInputElement>(null);

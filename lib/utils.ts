@@ -273,7 +273,7 @@ export function formatDateTime(
   // Honour the regional `dateLocale` override; `auto` keeps the previous
   // `undefined` (runtime default) locale so existing behaviour is unchanged. (#456)
   const { dateLocale } = useSettingsStore.getState();
-  const effectiveLocale = resolveDateLocale(dateLocale, undefined);
+  const effectiveLocale = resolveDateLocale(dateLocale, typeof document !== "undefined" && document.documentElement.lang ? document.documentElement.lang : undefined);
 
   const localeOptions: Intl.DateTimeFormatOptions = { timeZone: getEffectiveTimeZone() };
   if (options?.weekday) localeOptions.weekday = options.weekday;

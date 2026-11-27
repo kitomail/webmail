@@ -44,8 +44,8 @@ const plainLocales = fs.readdirSync(localesDir).filter((l) => fs.existsSync(path
 
 describe('plain-language strings', () => {
   it('exist for English, German and Vietnamese only, each with a loader', () => {
-    expect(plainLocales.sort()).toEqual(['de', 'en', 'vi']);
-    expect(Object.keys(PLAIN_LANGUAGE_LOADERS).sort()).toEqual(['de', 'en', 'vi']);
+    expect(plainLocales.sort()).toEqual(['de', 'de-formal', 'en', 'vi']);
+    expect(Object.keys(PLAIN_LANGUAGE_LOADERS).sort()).toEqual(['de', 'de-formal', 'en', 'vi']);
   });
 
   for (const locale of plainLocales) {

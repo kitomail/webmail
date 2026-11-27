@@ -353,7 +353,7 @@ function EventChip({
 function TaskChip({ task, calendarMap }: { task: CalendarTask; calendarMap: Map<string, Calendar> }) {
   const t = useTranslations("calendar");
   const calId = Object.keys(task.calendarIds).find((id) => calendarMap.has(id));
-  const color = (calId && calendarMap.get(calId)?.color) || "#3b82f6";
+  const color = (calId && calendarMap.get(calId)?.color) || "#9B59EE";
   const done = task.progress === "completed";
   return (
     <span className={`pr-chip is-timed${done ? " is-inactive is-cancelled" : ""}`} style={chipStyle(color)}>

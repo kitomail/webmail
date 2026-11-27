@@ -287,9 +287,11 @@ describe('FileBrowser', () => {
   it('offers new and upload entries on My files in the sidebar', () => {
     renderBrowser();
     fireEvent.contextMenu(within(tree()).getByText('my_files'));
-    for (const name of ['open', 'files_new_folder', 'files_new_text_file', 'files_upload_files', 'files_upload_folder']) {
+    for (const name of ['open', 'files_new_folder', 'files_upload_files', 'files_upload_folder']) {
       expect(screen.getByRole('menuitem', { name })).toBeInTheDocument();
     }
+    // kitomail: no "new text file" entry
+    expect(screen.queryByRole('menuitem', { name: 'files_new_text_file' })).toBeNull();
   });
 
   it('renames and deletes a folder from the tree', async () => {

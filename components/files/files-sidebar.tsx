@@ -16,6 +16,9 @@ import { getFileIconByName } from "@/components/files/file-icons";
 import { isInternalDrag, readDraggedNames } from "@/components/files/file-item-parts";
 import { AccountScopeLabel } from "@/components/layout/account-scope-label";
 
+/** kitomail: the "new text file" entries are hidden. */
+const KITOMAIL_TEXT_FILES: boolean = false;
+
 const COLLAPSED_KEY = "files-sidebar-collapsed";
 const RECENT_LIMIT = 8;
 
@@ -277,7 +280,8 @@ export function FilesSidebar({
     <>
       <ContextMenuSeparator />
       <ContextMenuItem icon={FolderPlus} label={tMenu("files_new_folder")} onClick={() => run(() => onCreateIn(path, id, "folder"))} />
-      <ContextMenuItem icon={FilePlus} label={newFileLabel ?? tMenu("files_new_text_file")} onClick={() => run(() => onCreateIn(path, id, "text"))} />
+      {/* kitomail: no "new text file" */}
+      {KITOMAIL_TEXT_FILES && <ContextMenuItem icon={FilePlus} label={newFileLabel ?? tMenu("files_new_text_file")} onClick={() => run(() => onCreateIn(path, id, "text"))} />}
       <ContextMenuItem icon={Upload} label={tMenu("files_upload_files")} onClick={() => run(() => onCreateIn(path, id, "files"))} />
       <ContextMenuItem icon={FolderUp} label={tMenu("files_upload_folder")} onClick={() => run(() => onCreateIn(path, id, "dir"))} />
     </>
@@ -465,7 +469,8 @@ export function FilesSidebar({
         <ContextMenuItem icon={FolderUp} label={tMenu("files_upload_folder")} onClick={() => { newMenu.closeContextMenu(); onUploadFolder(); }} />
         <ContextMenuSeparator />
         <ContextMenuItem icon={FolderPlus} label={tMenu("files_new_folder")} onClick={() => { newMenu.closeContextMenu(); onNewFolder(); }} />
-        <ContextMenuItem icon={FilePlus} label={newFileLabel ?? tMenu("files_new_text_file")} onClick={() => { newMenu.closeContextMenu(); onNewTextFile(); }} />
+        {/* kitomail: no "new text file" */}
+        {KITOMAIL_TEXT_FILES && <ContextMenuItem icon={FilePlus} label={newFileLabel ?? tMenu("files_new_text_file")} onClick={() => { newMenu.closeContextMenu(); onNewTextFile(); }} />}
       </ContextMenu>
 
       <ContextMenu ref={itemMenu.menuRef} isOpen={itemMenu.contextMenu.isOpen} position={itemMenu.contextMenu.position} onClose={itemMenu.closeContextMenu}>

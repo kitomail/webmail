@@ -706,7 +706,7 @@ export function CalendarMonthView({
                       {dayEvents.slice(0, 3).map((ev) => {
                         const calId = getPrimaryCalendarId(ev);
                         const cal = calId ? calendarMap.get(calId) : undefined;
-                        const evColor = paint(ev.color || cal?.color || "#3b82f6");
+                        const evColor = paint(ev.color || cal?.color || "#9B59EE");
                         const inactive = ev.status === "cancelled" || isDeclinedByUser(ev, replyEmailsFor(ev, cal));
                         return (
                           <span
@@ -724,7 +724,7 @@ export function CalendarMonthView({
                             key={`task-${task.id}-${task.due ?? dayIndex}`}
                             data-calendar-task={task.id}
                             className={cn("w-1.5 h-1.5 rounded-full border", task.progress === "completed" && "opacity-40")}
-                            style={{ borderColor: paint((calId && calendarMap.get(calId)?.color) || "#3b82f6") }}
+                            style={{ borderColor: paint((calId && calendarMap.get(calId)?.color) || "#9B59EE") }}
                           />
                         );
                       })}
@@ -734,7 +734,7 @@ export function CalendarMonthView({
                       {pendingPreview && checkIsSameDay(pendingPreview.start, day) && (
                         <span
                           className="w-1.5 h-1.5 rounded-full border border-dashed"
-                          style={{ borderColor: paint(calendarMap.get(pendingPreview.calendarId)?.color || "#3b82f6") }}
+                          style={{ borderColor: paint(calendarMap.get(pendingPreview.calendarId)?.color || "#9B59EE") }}
                         />
                       )}
                     </div>
@@ -967,7 +967,7 @@ function MonthCellEntries({
         let busiest = 0;
         for (let d = dayIndex; d < dayIndex + previewSpan; d++) busiest = Math.max(busiest, dayEventRows[d] + dayTasks[d].length);
         const previewRow = Math.min(lastRow, Math.max(rowCount, busiest));
-        const color = paint(calendarMap.get(preview.calendarId)?.color || "#3b82f6");
+        const color = paint(calendarMap.get(preview.calendarId)?.color || "#9B59EE");
         return (
           <div className="absolute z-20 px-0.5 pointer-events-none" style={place(previewRow, previewSpan)}>
             <div

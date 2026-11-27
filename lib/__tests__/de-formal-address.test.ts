@@ -1,6 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
+// kitomail: locales/de is the informal "du" variant; the formal "Sie"
+// variant lives in locales/de-formal and is checked here.
 // German addresses the user formally ("Sie") throughout (R10). Informal
 // pronouns and du-imperatives slipped into some strings.
 
@@ -16,7 +18,7 @@ function strings(node: unknown, path: string[] = []): Array<[string, string]> {
 
 describe('German translations', () => {
   it('use the formal "Sie" everywhere', () => {
-    const de = JSON.parse(readFileSync('locales/de/common.json', 'utf8'));
+    const de = JSON.parse(readFileSync('locales/de-formal/common.json', 'utf8'));
     const informal = strings(de)
       // Words the composer looks for in "[Dein Name]"-style fill-ins, not UI text.
       .filter(([key]) => !key.includes('placeholder_words'))
@@ -26,7 +28,7 @@ describe('German translations', () => {
   });
 
   it('use the formal "Sie" in the plain-language strings too', () => {
-    const plain = JSON.parse(readFileSync('locales/de/plain.json', 'utf8'));
+    const plain = JSON.parse(readFileSync('locales/de-formal/plain.json', 'utf8'));
     const informal = strings(plain)
       .filter(([, text]) => INFORMAL.test(text))
       .map(([key]) => key);

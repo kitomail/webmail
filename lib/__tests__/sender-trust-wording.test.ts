@@ -16,6 +16,7 @@ const EARLIER: Record<string, string> = {
   "cs": "Poštovní server ověřil, že tato zpráva pochází z {domain}.",
   "da": "Mailserveren har bekræftet, at denne besked kommer fra {domain}.",
   "de": "Der Mailserver hat bestätigt, dass diese Nachricht von {domain} kommt.",
+  "de-formal": "Der Mailserver hat bestätigt, dass diese Nachricht von {domain} kommt.",
   "el": "Ο διακομιστής αλληλογραφίας επιβεβαίωσε ότι αυτό το μήνυμα προέρχεται από {domain}.",
   "en": "The mail server confirmed that this message comes from {domain}.",
   "es": "El servidor de correo confirmó que este mensaje viene de {domain}.",
@@ -64,7 +65,7 @@ describe('the tooltip of the sender domain on a booking card', () => {
   });
 
   it('covers every locale', () => {
-    expect(langs.length).toBe(33);
+    expect(langs.length).toBe(34);
     expect(Object.keys(EARLIER).sort()).toEqual([...langs].sort());
   });
 });

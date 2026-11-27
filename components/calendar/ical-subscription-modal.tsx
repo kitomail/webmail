@@ -29,7 +29,7 @@ export function ICalSubscriptionModal({ client, onClose, editSubscription, initi
 
   const [url, setUrl] = useState(editSubscription?.url || initialUrl || "");
   const [name, setName] = useState(editSubscription?.name || initialName || "");
-  const [color, setColor] = useState(editSubscription?.color || "#3b82f6");
+  const [color, setColor] = useState(editSubscription?.color || "#9B59EE");
   const [refreshInterval, setRefreshInterval] = useState(editSubscription?.refreshInterval || 60);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);

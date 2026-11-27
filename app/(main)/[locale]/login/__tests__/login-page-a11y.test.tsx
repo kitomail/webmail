@@ -174,7 +174,7 @@ describe('login form accessibility', () => {
     Element.prototype.scrollIntoView = vi.fn();
     await renderForm();
     fireEvent.click(screen.getByRole('button', { name: 'login_a11y.language_button' }));
-    fireEvent.click(await screen.findByRole('option', { name: /Deutsch/ }));
+    fireEvent.click(await screen.findByRole('option', { name: /Deutsch \(Du\)/ }));
     expect(useLocaleStore.getState().locale).toBe('de');
     expect(signedOutChoices()).toContain('locale');
   }, 30_000);

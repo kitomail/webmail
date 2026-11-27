@@ -362,7 +362,7 @@ export function TaskListView({
                   )}
                   {cal && (
                     <span className="text-xs text-muted-foreground flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: paint(cal.color || "#3b82f6") }} />
+                      <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: paint(cal.color || "#9B59EE") }} />
                       {shownName.calendar(cal)}
                     </span>
                   )}

@@ -15,7 +15,8 @@ const LANGUAGES = [
   { value: 'sk', label: 'Slovenčina' },
   { value: 'sv', label: 'Svenska' },
   { value: 'da', label: 'Dansk' },
-  { value: 'de', label: 'Deutsch' },
+  { value: 'de', label: 'Deutsch (Du)' },
+  { value: 'de-formal', label: 'Deutsch (Sie)' },
   { value: 'el', label: 'Ελληνικά' },
   { value: 'en', label: 'English' },
   { value: 'et', label: 'Eesti' },
@@ -78,9 +79,12 @@ export function useLanguageOptions() {
     const local = displayNames(getEffectiveLocale());
     const english = displayNames('en');
     return languages.map((lang) => {
-      const translated = lang.value === 'auto' ? undefined : local(lang.value);
+      // kitomail: "Deutsch (Du)" and "Deutsch (Sie)" are clear on their own, so no hint
+      // beside them; "de-formal" is unknown to Intl, so it is searched as German.
+      const german = lang.value === 'de' || lang.value === 'de-formal';
+      const translated = lang.value === 'auto' || german ? undefined : local(lang.value);
       const hint = translated && foldForSearch(translated) !== foldForSearch(lang.label) ? translated : undefined;
-      const keywords = lang.value === 'auto' ? undefined : english(lang.value);
+      const keywords = lang.value === 'auto' ? undefined : english(german ? 'de' : lang.value);
       return { value: lang.value, label: lang.label, hint, keywords, icon: <FlagIcon locale={lang.value} /> };
     });
   }, [choice]);
