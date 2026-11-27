@@ -185,10 +185,10 @@ html[data-interface-layout="mountain-view"].dark .mv-topbar [role="menu"] a[role
   }
 }
 
-/* Handy: Standard-Textgroesse 125 % statt 100 % (eigene Wahl ueber 100 % bleibt erhalten) */
+/* Handy: Standard-Textgroesse 118 % (bis 27.11.: 125 %, .bak81) statt 100 % (eigene Wahl ueber 100 % bleibt erhalten) */
 @media (max-width: 767px) {
   html[style*="--font-size-base: 100%"] {
-    --font-size-base: 125% !important;
+    --font-size-base: 118% !important;
   }
 }
 
@@ -653,3 +653,46 @@ html body header[data-mobile-mail-header].rounded-full{
 
 /* === kitomail: zwei Auswahlfelder nebeneinander (z. B. Kalender → Sichtbare Stunden) teilen sich die Zeile, passen aufs iPhone (Variante A, .bak72) === */
 div.flex.items-center:has(> select + span + select) > select{min-width:0!important;flex:1 1 0!important}
+
+/* === kitomail: mobile Leiste unten nur mit Symbolen, ohne Beschriftung; Namen bleiben für VoiceOver (aria-label) (Variante A, .bak73) === */
+nav[data-mobile-navigation] a > span.truncate{display:none!important}
+
+/* === kitomail: mobile Kopfzeile Mail ohne Hover-Hintergrund an Menü, Drei-Punkte und Profil (bleibt auf Touch sonst stehen) (.bak74) === */
+html body header[data-mobile-mail-header] button:hover{background-color:transparent!important}
+
+/* === kitomail: Mailliste mobil – Kopfzeile und untere Leiste durchscheinend (85 %, 8 px Unschärfe), Liste läuft darunter durch; Stift über der Leiste (Variante C, .bak75) === */
+html body header[data-mobile-mail-header].rounded-full.rounded-full{background-color:rgba(255,255,255,.85)!important;-webkit-backdrop-filter:blur(8px)!important;backdrop-filter:blur(8px)!important;position:relative;z-index:30}
+html.dark body header[data-mobile-mail-header].rounded-full.rounded-full{background-color:rgba(38,37,42,.85)!important}
+#message-list{margin-top:-67px;padding-top:67px;padding-bottom:calc(80px + env(safe-area-inset-bottom) / 2)}
+body:has(header[data-mobile-mail-header]):not(:has(.hidden header[data-mobile-mail-header])) nav[data-mobile-navigation]{background-color:rgba(249,248,252,.85)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);position:relative;z-index:30;margin-top:calc(-80px - env(safe-area-inset-bottom) / 2)}
+html.dark body:has(header[data-mobile-mail-header]):not(:has(.hidden header[data-mobile-mail-header])) nav[data-mobile-navigation]{background-color:rgba(20,19,23,.85)!important}
+[data-floating-compose]{bottom:calc(1rem + 80px + env(safe-area-inset-bottom) / 2)!important;z-index:40!important}
+
+/* === kitomail: mobile Kopfzeile Mail 64 px hoch statt 52 px (ersetzt Höhe aus .bak66), Liste rückt mit (ersetzt 67 px aus .bak75) (Variante C, .bak76) === */
+html body header[data-mobile-mail-header].rounded-full.rounded-full{height:64px!important}
+#message-list{margin-top:-79px!important;padding-top:79px!important}
+
+/* === kitomail: Antworten/Allen/Weiterleiten unter der Mail als Symbolgruppe ohne Text (Text bleibt für VoiceOver), überall; oben an der Einzelnachricht (Handy) keine Antwort-Symbole; frühere Nachrichten einer Konversation behalten ihre (Variante B + 1, .bak77) === */
+[data-mv-reply-row]{display:flex!important;flex-wrap:nowrap!important;gap:0!important;justify-content:flex-start!important;align-items:center!important}
+[data-mv-reply-row] > button{font-size:0!important;gap:0!important;flex:none!important;width:44px!important;min-width:44px!important;height:36px!important;padding:0!important;border:0!important;border-top:1px solid #E3E2E6!important;border-bottom:1px solid #E3E2E6!important;border-radius:0!important;position:relative}
+[data-mv-reply-row] > button:first-child{border-left:1px solid #E3E2E6!important;border-radius:8px 0 0 8px!important}
+[data-mv-reply-row] > button:last-child{border-right:1px solid #E3E2E6!important;border-radius:0 8px 8px 0!important}
+[data-mv-reply-row] > button + button::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:1px;background:#E3E2E6}
+[data-mv-reply-row] > button svg{width:18px!important;height:18px!important}
+html.dark [data-mv-reply-row] > button{border-color:#2E2D32!important}
+html.dark [data-mv-reply-row] > button + button::before{background:#2E2D32}
+[data-mv-mobile-sender-actions]{display:none!important}
+
+/* === kitomail: Antworten-Gruppe unter der Mail größer: 52 × 44 px, Symbol 22 px (ersetzt Größe aus .bak77) (Variante B, .bak78) === */
+[data-mv-reply-row] > button{width:52px!important;min-width:52px!important;height:44px!important}
+[data-mv-reply-row] > button svg{width:22px!important;height:22px!important}
+[data-mv-reply-row] > button + button::before{top:10px!important;bottom:10px!important}
+
+/* === kitomail: mobile Kopfzeile Mail – keine lila Markierung hinter ⋮ bei offenem Menü (ragte aus der Leiste) (.bak79) === */
+html body header[data-mobile-mail-header] button[aria-expanded="true"]{background-color:transparent!important}
+
+/* === kitomail: Touch-Geräte – kein Hintergrund an ⋮- und …-Knöpfen (Hover, gedrückt, Menü offen), in allen Apps (.bak80) === */
+@media (hover:none) and (pointer:coarse){
+  html body button:has(svg.tabler-icon-dots-vertical),
+  html body button:has(svg.tabler-icon-dots){background-color:transparent!important}
+}
