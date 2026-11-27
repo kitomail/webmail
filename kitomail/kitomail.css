@@ -696,3 +696,7 @@ html body header[data-mobile-mail-header] button[aria-expanded="true"]{backgroun
   html body button:has(svg.tabler-icon-dots-vertical),
   html body button:has(svg.tabler-icon-dots){background-color:transparent!important}
 }
+
+/* === kitomail: ⋮- und …-Knöpfe überall ohne Hintergrund (Hover, gedrückt, Menü offen), auch am Desktop; gewinnt gegen die Hover-Regel in Zeile 153 (.bak82) === */
+html body button:not(#kito):has(svg.tabler-icon-dots-vertical),
+html body button:not(#kito):has(svg.tabler-icon-dots){background-color:transparent!important}

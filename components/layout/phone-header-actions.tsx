@@ -52,6 +52,13 @@ export function PhoneHeaderMenu({ menuItems }: PhoneHeaderMenuProps) {
       <IconButton
         size="icon-lg"
         onClick={(e) => (open ? close() : menu.openContextMenuFrom(e.currentTarget, null, "end"))}
+        // kitomail: a second tap on ⋮ closes the menu. Without this, the
+        // menu's outside-click listener (on document) closed it on mousedown
+        // and the click that follows opened it again. Next.js hydrates the
+        // whole document, so React's own listener sits on document too:
+        // stopPropagation alone does not reach a listener on the same node,
+        // stopImmediatePropagation does (React's was added first).
+        onMouseDown={(e) => { if (open) { e.stopPropagation(); e.nativeEvent.stopImmediatePropagation(); } }}
         className={cn(open && "bg-accent")}
         label={unread > 0 ? `${t("more")} (${tNotifications("unread_count", { count: unread })})` : t("more")}
         title=""

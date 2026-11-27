@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 // The phone header cluster (⋮ with notifications and the command palette,
@@ -27,6 +27,34 @@ describe('PhoneHeaderActions', () => {
     fireEvent.click(screen.getByRole('button', { name: 'more' }));
     // Notifications and the command palette (both "title" as keys in tests).
     expect(screen.getAllByRole('menuitem').map((m) => m.textContent)).toEqual(['title', 'title']);
+  });
+
+  // kitomail: a second tap on ⋮ closes the menu instead of opening it again.
+  it('closes the menu on a second tap of the ⋮', async () => {
+    render(<PhoneHeaderActions />);
+    const more = screen.getByRole('button', { name: 'more' });
+    fireEvent.click(more);
+    expect(screen.getAllByRole('menuitem').length).toBeGreaterThan(0);
+    // Let the menu arm its outside-click listener (it waits a tick).
+    await act(async () => { await new Promise((r) => setTimeout(r, 10)); });
+    fireEvent.mouseDown(more);
+    fireEvent.click(more);
+    expect(screen.queryAllByRole('menuitem')).toHaveLength(0);
+    expect(more).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  // kitomail: in the app React listens on document itself (Next.js hydrates
+  // the whole document), next to the menu's outside-click listener, so the
+  // trigger has to stop the mousedown for listeners on the same node too.
+  it('stops the mousedown for other listeners on the same node while open', async () => {
+    render(<PhoneHeaderActions />);
+    const more = screen.getByRole('button', { name: 'more' });
+    fireEvent.click(more);
+    await act(async () => { await new Promise((r) => setTimeout(r, 10)); });
+    const spy = vi.spyOn(Event.prototype, 'stopImmediatePropagation');
+    fireEvent.mouseDown(more);
+    expect(spy).toHaveBeenCalled();
+    spy.mockRestore();
   });
 
   it('opens the command palette from the menu', () => {

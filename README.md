@@ -7,6 +7,7 @@ Changes against upstream 1.22.0:
 - German informal locale ("du") as default `de`; the original formal German
   is available as "Deutsch (Sie)" (`de-formal`).
 - Language picker: no grey hint beside "Deutsch (Du)" and "Deutsch (Sie)".
+- Phone: a second tap on the ⋮ menu closes it.
 - German wording: labels are called "Eigene Ordner", shared labels "Tags".
 - Dates and times follow the interface language (`lib/utils.ts`).
 - Files: the "New text file" entry is hidden.
@@ -16,6 +17,6 @@ Changes against upstream 1.22.0:
   (not part of the image).
 
 Build:
-  docker build --target runner -t kitomail/bulwark:1.22.0-du2 .
+  docker build --target runner -t kitomail/bulwark:1.22.0-du4 .
 
 Original Bulwark README: [README.bulwark.md](README.bulwark.md)
