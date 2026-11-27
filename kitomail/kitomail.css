@@ -633,3 +633,20 @@ div.border-t:has(+ div.space-y-3 > div h4[data-search-label="API-Schlüssel"]){d
 
 /* Einstellungen → Datenschutz: Abschnitt „Absenderbilder“ ausblenden (Firmenlogos über DuckDuckGo/USA; Vorgabe bleibt „aus“) */
 [data-settings-section="senders"]{display:none!important}
+
+/* === kitomail: mobile Kopfzeile weiß mit weichem Schatten (Variante A, .bak64) === */
+html body header[data-mobile-mail-header].rounded-full{
+  background-color:#FFFFFF!important;
+  box-shadow:0 8px 20px -6px rgb(0 0 0/.18),0 2px 6px -2px rgb(0 0 0/.10),0 0 0 1px rgb(0 0 0/.05)!important;
+}
+html.dark body header[data-mobile-mail-header].rounded-full{
+  background-color:#26252A!important;
+  box-shadow:0 8px 20px -6px rgb(0 0 0/.5),0 2px 6px -2px rgb(0 0 0/.35),0 0 0 1px rgb(255 255 255/.06)!important;
+}
+
+/* === kitomail: mobile Kopfzeile schmaler – 52 px hoch, 16 px Rand (Variante B, .bak66) === */
+html body header[data-mobile-mail-header].rounded-full{
+  height:52px!important;
+  margin-left:16px!important;
+  margin-right:16px!important;
+}
