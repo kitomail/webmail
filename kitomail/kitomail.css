@@ -149,12 +149,14 @@ html[data-interface-layout="mountain-view"].dark .mv-topbar [role="menu"] a[role
   --color-muted: #EAE9EE;
 }
 
-/* Icon-Buttons (Bulwark "ghost"): Hover grau statt Akzent-Lila; Ausgewähltes bleibt lila */
+/* Icon-Buttons (Bulwark "ghost"): Hover grau statt Akzent-Lila; Ausgewähltes bleibt lila; nur mit Maus, auf Touch blieb das Grau nach dem Tippen stehen (.bak83) */
+@media (hover:hover) {
 .hover\:bg-accent:not(.bg-accent):hover {
   background-color: var(--color-muted) !important;
 }
 .hover\:text-accent-foreground:not(.bg-accent):hover {
   color: var(--color-foreground) !important;
+}
 }
 
 /* Eingeklappte Mail-Leiste: Icon im Kasten zentrieren (Bulwarks einseitiger Abstand rechts) */
@@ -700,3 +702,134 @@ html body header[data-mobile-mail-header] button[aria-expanded="true"]{backgroun
 /* === kitomail: ⋮- und …-Knöpfe überall ohne Hintergrund (Hover, gedrückt, Menü offen), auch am Desktop; gewinnt gegen die Hover-Regel in Zeile 153 (.bak82) === */
 html body button:not(#kito):has(svg.tabler-icon-dots-vertical),
 html body button:not(#kito):has(svg.tabler-icon-dots){background-color:transparent!important}
+
+/* === kitomail: mobile untere Leiste – aktive Markierung größer, 52 × 46 px, Ecken 16 px (Variante B, .bak84) === */
+nav[data-mobile-navigation] a[aria-current="page"] > div.rounded-full{min-width:52px!important;width:52px!important;height:46px!important;border-radius:16px!important;padding:0!important;display:flex!important;align-items:center;justify-content:center}
+
+/* === kitomail: Mailliste mobil – Kopfzeile durchsichtiger (40 %, 16 px, Variante B), untere Leiste 60 %, 12 px (Variante A); ersetzt Werte aus .bak75 (.bak85) === */
+html body header[data-mobile-mail-header].rounded-full.rounded-full{background-color:rgba(255,255,255,.40)!important;-webkit-backdrop-filter:blur(16px) saturate(1.2)!important;backdrop-filter:blur(16px) saturate(1.2)!important}
+html.dark body header[data-mobile-mail-header].rounded-full.rounded-full{background-color:rgba(38,37,42,.40)!important}
+body:has(header[data-mobile-mail-header]):not(:has(.hidden header[data-mobile-mail-header])) nav[data-mobile-navigation]{background-color:rgba(249,248,252,.60)!important;-webkit-backdrop-filter:blur(12px) saturate(1.2)!important;backdrop-filter:blur(12px) saturate(1.2)!important}
+html.dark body:has(header[data-mobile-mail-header]):not(:has(.hidden header[data-mobile-mail-header])) nav[data-mobile-navigation]{background-color:rgba(20,19,23,.60)!important}
+
+/* === kitomail: Mailliste mobil – Rahmen um die Liste schneidet nicht mehr ab (overflow sichtbar), damit die Mails wirklich unter der Kopfzeile durchlaufen (.bak86) === */
+body:has(header[data-mobile-mail-header]) div.overflow-hidden:has(> div > #message-list){overflow:visible!important}
+
+/* === kitomail: mobile Suchleiste 4 px unter der Statusleiste (ersetzt 0 px aus .bak87), Liste rückt mit (.bak88) === */
+html body header[data-mobile-mail-header].rounded-full.rounded-full{margin-top:4px!important}
+#message-list{margin-top:calc(-68px - .25rem)!important;padding-top:calc(68px + .25rem)!important}
+
+/* === kitomail: Handy-Leseansicht – Antworten-Gruppe schwebt fest unten links (60 %, 12 px, Schatten); bei Konversationen mit späteren Nachrichten ausgeblendet, geöffnete Nachricht bekommt ihre Symbole oben zurück (Übergang bis Patch „Gruppe = neueste Nachricht“) (.bak89) === */
+@media (max-width:767px){
+  [data-mv-reply-row]{position:fixed!important;left:12px!important;bottom:calc(16px + env(safe-area-inset-bottom))!important;z-index:40;width:max-content!important;margin:0!important;padding:0!important;border:1px solid rgba(227,226,230,.9)!important;border-radius:12px!important;background:rgba(255,255,255,.60)!important;-webkit-backdrop-filter:blur(12px) saturate(1.2);backdrop-filter:blur(12px) saturate(1.2);box-shadow:0 8px 20px -6px rgb(0 0 0/.22),0 2px 6px -2px rgb(0 0 0/.12)}
+  [data-mv-reply-row] > button{border-color:transparent!important;background-color:transparent!important}
+  html.dark [data-mv-reply-row]{background:rgba(20,19,23,.60)!important;border-color:#2E2D32!important}
+  :has(> [data-mv-reply-row]){padding-bottom:80px!important}
+  body:has([data-mv-conversation-after]) [data-mv-reply-row]{display:none!important}
+  body:has([data-mv-conversation-after]) [data-mv-mobile-sender-actions]{display:flex!important}
+}
+
+/* === kitomail: About-Seite – quadratisches „K“ statt des schmalen Wortzeichens (nur hier; oben links und anderswo bleibt das App-Logo) (.bak90) === */
+[data-testid="settings-about"] img{content:url("/kitomail-assets/kitomail-k.svg")!important}
+
+/* === kitomail: About-Seite – Bild „kitomail auf drei Geräten“ unter der Versionszeile, höchstens 560 px, mittig (Variante C, .bak91) === */
+[data-testid="settings-about"]::after{content:"";display:block;margin-top:24px;margin-inline:auto;width:100%;max-width:560px;aspect-ratio:16/9;border-radius:16px;background:url("/kitomail-assets/kitomail-geraete.webp") center/cover no-repeat}
+
+/* === kitomail: About-Seite – Claim „Your mail has a new / home“ bzw. „Deine Mail hat ein neues / Zuhause“ (32/64 px, Lila #8467D6), darunter Bild (max. 560 px, Ecken 16 px), darunter „In Germany. No ads. No tracking“ / „In Deutschland. Ohne Werbung. Ohne Tracking“; ersetzt .bak91 (.bak92) === */
+[data-testid="settings-about"]{display:flex!important;flex-direction:column}
+[data-testid="settings-about"] > div:first-child{flex-wrap:wrap}
+[data-testid="settings-about"] > div:first-child::after{content:"Your mail has a new";order:99;flex-basis:100%;margin-top:36px;text-align:center;font-size:32px;font-weight:800;line-height:1.15;color:#1A191E}
+html[lang^="de"] [data-testid="settings-about"] > div:first-child::after{content:"Deine Mail hat ein neues"}
+html.dark [data-testid="settings-about"] > div:first-child::after{color:#FAFAFD}
+[data-testid="settings-about"] > div:first-child::before{content:"home";order:100;flex-basis:100%;margin-top:2px;text-align:center;font-size:64px;font-weight:800;line-height:1.05;color:#8467D6}
+html[lang^="de"] [data-testid="settings-about"] > div:first-child::before{content:"Zuhause"}
+[data-testid="settings-about"]::before{order:1;content:"";display:block;width:100%;max-width:560px;margin:28px auto 0;aspect-ratio:16/9;border-radius:16px;background:url("/kitomail-assets/kitomail-geraete.webp") center/cover no-repeat}
+[data-testid="settings-about"]::after{order:2;content:"In Germany. No ads. No tracking"!important;display:block;margin:18px auto 0!important;width:auto!important;max-width:none!important;aspect-ratio:auto!important;border-radius:0!important;padding:0!important;background:none!important;text-align:center;font-size:16px;line-height:1.5;color:#5B5A60}
+html[lang^="de"] [data-testid="settings-about"]::after{content:"In Deutschland. Ohne Werbung. Ohne Tracking"!important}
+html.dark [data-testid="settings-about"]::after{color:#AEACB3}
+
+/* === kitomail: About-Seite – Claim in allen Sprachen Englisch (ersetzt die deutschen Fassungen aus .bak92) (.bak93) === */
+html[lang^="de"] [data-testid="settings-about"] > div:first-child::after{content:"Your mail has a new"}
+html[lang^="de"] [data-testid="settings-about"] > div:first-child::before{content:"home"}
+html[lang^="de"] [data-testid="settings-about"]::after{content:"In Germany. No ads. No tracking"!important}
+
+/* === kitomail: API-Schlüssel ausblenden – in Stalwart deaktiviert (.bak94) === */
+div:has(> div > div > svg.tabler-icon-terminal){display:none!important}
+div.border-t:has(+ div svg.tabler-icon-terminal){display:none!important}
+
+/* === kitomail: Anmeldeseite – „Welcome home“ klein, darunter „Sign in“ groß, links (Variante B) (.bak95) === */
+div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"]){text-align:left!important;padding-top:28px!important;padding-bottom:24px!important}
+div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"]) > *{display:none!important}
+div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Welcome home";display:block;font-size:16px;font-weight:400;color:#5B5A60;margin-bottom:4px}
+div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Sign in";display:block;font-size:32px;font-weight:800;line-height:1.1;letter-spacing:-0.5px;color:#1A191E}
+html.dark div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{color:#AEACB3}
+html.dark div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{color:#FAFAFD}
+
+/* === kitomail: Anmeldeseite – deutsche Texte (Du und Sie), Standard bleibt Englisch (.bak96) === */
+html[lang^="de"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Willkommen zu Hause"}
+html[lang^="de"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Anmelden"}
+
+/* === kitomail: Anmeldeseite – Begrüßung je Sprache, „Anmelden“ = Bulwarks eigenes Wort; Ausrichtung folgt der Schreibrichtung (.bak97) === */
+div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"]){text-align:start!important}
+html[lang^="ar"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"مرحبًا بك في بيتك"}
+html[lang^="ar"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"تسجيل الدخول"}
+html[lang^="nb"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Velkommen hjem"}
+html[lang^="nb"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Logg på"}
+html[lang="zh"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before,html[lang="zh-CN"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"欢迎回家"}
+html[lang="zh"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after,html[lang="zh-CN"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"登录"}
+html[lang="zh-TW"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"歡迎回家"}
+html[lang="zh-TW"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"登入"}
+html[lang^="da"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Velkommen hjem"}
+html[lang^="da"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Log ind"}
+html[lang^="et"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Tere tulemast koju"}
+html[lang^="et"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Logi sisse"}
+html[lang^="fr"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Bienvenue chez vous"}
+html[lang^="fr"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Se connecter"}
+html[lang^="el"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Καλώς ήρθες σπίτι"}
+html[lang^="el"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Σύνδεση"}
+html[lang^="he"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"ברוכים הבאים הביתה"}
+html[lang^="he"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"היכנס"}
+html[lang^="it"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Qui sei a casa"}
+html[lang^="it"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Accedi"}
+html[lang^="ja"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"おかえりなさい"}
+html[lang^="ja"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"サインイン"}
+html[lang^="ca"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Aquí ets a casa"}
+html[lang^="ca"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Inicia la sessió"}
+html[lang^="ko"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"어서 오세요"}
+html[lang^="ko"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"로그인"}
+html[lang^="lv"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Laipni lūgti mājās"}
+html[lang^="lv"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Pierakstīties"}
+html[lang^="mn"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Гэртээ тавтай морил"}
+html[lang^="mn"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Нэвтрэх"}
+html[lang^="nl"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Welkom thuis"}
+html[lang^="nl"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Aanmelden"}
+html[lang^="nn"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Velkommen heim"}
+html[lang^="nn"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Logg inn"}
+html[lang^="fa"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"به خانه خوش آمدی"}
+html[lang^="fa"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"ورود"}
+html[lang^="pl"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Witaj w domu"}
+html[lang^="pl"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Zaloguj się"}
+html[lang^="pt"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Sinta-se em casa"}
+html[lang^="pt"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Entrar"}
+html[lang^="ro"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Bine ai venit acasă"}
+html[lang^="ro"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Autentificare"}
+html[lang^="ru"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Добро пожаловать домой"}
+html[lang^="ru"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Войти"}
+html[lang^="sv"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Välkommen hem"}
+html[lang^="sv"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Logga in"}
+html[lang^="sk"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Vitajte doma"}
+html[lang^="sk"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Prihlásiť sa"}
+html[lang^="es"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Estás en tu casa"}
+html[lang^="es"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Iniciar sesión"}
+html[lang^="th"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"ยินดีต้อนรับกลับบ้าน"}
+html[lang^="th"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"เข้าสู่ระบบ"}
+html[lang^="cs"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Vítejte doma"}
+html[lang^="cs"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Přihlásit se"}
+html[lang^="tr"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Evine hoş geldin"}
+html[lang^="tr"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Giriş yap"}
+html[lang^="uk"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Ласкаво просимо додому"}
+html[lang^="uk"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Увійдіть"}
+html[lang^="hu"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Üdv itthon"}
+html[lang^="hu"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Bejelentkezés"}
+html[lang^="vi"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::before{content:"Chào mừng bạn về nhà"}
+html[lang^="vi"] div.px-8.pt-10.pb-6.text-center:has(+ div input[type="password"])::after{content:"Đăng nhập"}
